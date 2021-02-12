@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import './Recipe/view/screens/pastry_detail_screen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(PastryDetailScreen());
 }
 
 class MyApp extends StatelessWidget {
