@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
-import './add_ingredient_item.dart';
+import './add_direction.dart';
+import '../../models/recipe.dart';
 
-class AddIngredients extends StatefulWidget {
+class AddDirections extends StatefulWidget {
+  final Recipe recipe;
+
+  const AddDirections(this.recipe);
   @override
-  _AddIngredientsState createState() => _AddIngredientsState();
+  _AddDirectionsState createState() => _AddDirectionsState();
 }
 
-class _AddIngredientsState extends State<AddIngredients> {
+class _AddDirectionsState extends State<AddDirections> {
   @override
   List<Widget> list = new List();
   @override
   void initState() {
     super.initState();
-    list.add(AddIngredientItem());
+    list.add(AddDirectionItem(1,widget.recipe));
   }
 
   Widget build(BuildContext context) {
@@ -20,10 +24,8 @@ class _AddIngredientsState extends State<AddIngredients> {
       Row(
         children: [
           Text(
-            "Add Ingredients",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
+            "Add Directions",
+            style: TextStyle(fontWeight: FontWeight.bold),
           ),
           SizedBox(
             width: 10,
@@ -33,7 +35,7 @@ class _AddIngredientsState extends State<AddIngredients> {
             icon: Icon(Icons.add),
             onPressed: () {
               setState(() {
-                list.add(AddIngredientItem());
+                list.add(AddDirectionItem(list.length + 1,widget.recipe));
               });
             },
           ),

@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 
 class AddIngredientItem extends StatefulWidget {
+
   @override
   _AddIngredientItemState createState() => _AddIngredientItemState();
 }
@@ -9,12 +10,13 @@ class _AddIngredientItemState extends State<AddIngredientItem> {
   @override
   Widget build(BuildContext context) {
     String dropdownValue = 'One';
-    return Container(
-    
-      child: Column(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20,),
+      child: Container(
+          child: Column(
         children: [
           Row(
-mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 width: 100,
@@ -22,6 +24,7 @@ mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   decoration: InputDecoration(labelText: 'Name'),
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.text,
+                   
                 ),
               ),
               Container(
@@ -30,8 +33,6 @@ mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   value: dropdownValue,
                   icon: Icon(Icons.arrow_downward),
                   iconSize: 24,
-                  
-                 
                   onChanged: (String newValue) {
                     setState(() {
                       dropdownValue = newValue;
@@ -56,9 +57,8 @@ mainAxisAlignment: MainAxisAlignment.spaceBetween,
               ),
             ],
           ),
-         
-     
-      ],)
+        ],
+      )),
     );
   }
 }
