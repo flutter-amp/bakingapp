@@ -1,5 +1,6 @@
 
 import 'package:baking_app/Baking/models/ingredient.dart';
+import 'package:baking_app/Baking/models/recipe.dart';
 import 'package:baking_app/Baking/view/screens/recipe_screens/add_recipe_screen.dart';
 import 'package:baking_app/Baking/view/screens/recipe_screens/pastry_detail_screen.dart';
 import 'package:baking_app/Baking/view/screens/user-screens/user_profile_screen.dart';

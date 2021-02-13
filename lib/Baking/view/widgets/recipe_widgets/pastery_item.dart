@@ -1,7 +1,13 @@
+import 'package:baking_app/Baking/models/recipe.dart';
 import 'package:baking_app/Baking/view/screens/recipe_screens/pastry_detail_screen.dart';
 import 'package:flutter/material.dart';
 
+
+
 class PasteryItem extends StatelessWidget {
+final Recipe recipe;
+
+  const PasteryItem(this.recipe) ;
   Widget iconBuilder(String text, IconData data, BuildContext context) {
     return Row(
       children: [
@@ -50,7 +56,7 @@ class PasteryItem extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(bottom: 15),
                     child: Text(
-                      'Blueberry Cake',
+                      '${recipe.name}',
                       style: Theme.of(context).textTheme.headline5,
                     ),
                   ),

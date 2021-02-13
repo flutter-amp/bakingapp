@@ -1,4 +1,4 @@
-import 'package:baking_app/Baking/models/ingredient.dart';
+import 'package:baking_app/Baking/models/recipe.dart';
 import 'package:baking_app/Baking/view/widgets/recipe_widgets/pastries_details_tabs.dart';
 import 'package:flutter/material.dart';
 
@@ -23,14 +23,14 @@ class PastryDetailScreen extends StatelessWidget {
               child: Stack(alignment: Alignment.topLeft, children: <Widget>[
                 Container(
                   child: ClipRRect(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(25),
-                        bottomRight: Radius.circular(30)),
-                    child: Image.asset(
-                      "assets/images/Spaghetti.jpg",
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                  child: Container(
+                  
+                      child: Image.asset(
+                        'cake.jpg',
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                      ),),),
                 ),
                 Container(
                     margin: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
@@ -72,3 +72,4 @@ class PastryDetailScreen extends StatelessWidget {
     );
   }
 }
+
