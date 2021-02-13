@@ -1,3 +1,5 @@
+import 'package:baking_app/Baking/bloc/recipe_bloc/recipe_bloc.dart';
+import 'package:baking_app/Baking/bloc/recipe_bloc/recipe_event.dart';
 import 'package:flutter/material.dart';
 
 import 'package:baking_app/Baking/view/widgets/recipe_widgets/add_directions.dart';
@@ -5,6 +7,7 @@ import 'package:baking_app/Baking/view/widgets/recipe_widgets/add_ingredients.da
 import 'package:baking_app/Baking/models/ingredient.dart';
 import 'package:baking_app/Baking/models/recipe.dart';
 import 'package:baking_app/Baking/view/widgets/recipe_widgets/add_general_info.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 class AddRecipeScreen extends StatefulWidget {
@@ -28,10 +31,13 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
     super.dispose();
   }
 
-  void onSave() {
+  void onSave(BuildContext context ){
     _form.currentState.save();
     print(_recipe.name);
     print(_recipe.steps[0]);
+     BlocProvider.of<RecipeBloc>(context).add(RecipeCreate(_recipe));
+     
+     
   }
 
   @override
@@ -65,11 +71,11 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                 height: 20,
               ),
               RaisedButton(
-                onPressed: () {
-                  onSave();
-                },
-                child: Text("Done"),
-              )
+                  onPressed: () {
+                    onSave(context);
+                  },
+                  child: Text("Done"),
+                )
             ]),
           ),
         ),
