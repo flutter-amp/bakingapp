@@ -1,6 +1,7 @@
 
 import 'package:baking_app/Baking/models/ingredient.dart';
-import 'package:baking_app/Baking/view/screens/recipe_screens/add_recipe_page_screen.dart';
+import 'package:baking_app/Baking/models/recipe.dart';
+import 'package:baking_app/Baking/view/screens/recipe_screens/add_recipe_screen.dart';
 import 'package:baking_app/Baking/view/screens/recipe_screens/pastry_detail_screen.dart';
 import 'package:baking_app/tabsNavigation.dart';
 import 'package:flutter/material.dart';
@@ -11,9 +12,9 @@ class BakingAppRoute {
       return MaterialPageRoute(builder: (context) => TabsNavigation());
     }
 
-    if (settings.name == AddRecipePageScreen.routeName) {
+    if (settings.name == AddRecipeScreen.routeName) {
       return MaterialPageRoute(
-          builder: (context) => AddRecipePageScreen());
+          builder: (context) => AddRecipeScreen());
     }
 
     // if (settings.name == CourseDetail.routeName) {
