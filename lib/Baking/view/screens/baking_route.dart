@@ -1,6 +1,6 @@
 
 import 'package:baking_app/Baking/models/ingredient.dart';
-import 'package:baking_app/Baking/view/screens/recipe_screens/add_recipe_page_screen.dart';
+import 'package:baking_app/Baking/view/screens/recipe_screens/add_recipe_screen.dart';
 import 'package:baking_app/Baking/view/screens/recipe_screens/pastry_detail_screen.dart';
 import 'package:baking_app/Baking/view/screens/user-screens/user_profile_screen.dart';
 import 'package:baking_app/tabsNavigation.dart';
@@ -12,9 +12,9 @@ class BakingAppRoute {
       return MaterialPageRoute(builder: (context) => TabsNavigation());
     }
 
-    if (settings.name == AddRecipePageScreen.routeName) {
+    if (settings.name == AddRecipeScreen.routeName) {
       return MaterialPageRoute(
-          builder: (context) => AddRecipePageScreen());
+          builder: (context) => AddRecipeScreen());
     }
 
     if (settings.name == UserProfileScreen.routeName) {
@@ -24,6 +24,14 @@ class BakingAppRoute {
        //         course: course,
               ));
     }
+        if (settings.name == PastryDetailScreen.routeName) {
+      Recipe recipe = settings.arguments;
+      return MaterialPageRoute(
+          builder: (context) => PastryDetailScreen(
+                recipe: recipe,
+              ));
+    }
+
 
     return MaterialPageRoute(builder: (context) => PastryDetailScreen());
   }

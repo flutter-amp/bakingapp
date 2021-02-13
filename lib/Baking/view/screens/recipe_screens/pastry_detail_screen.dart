@@ -1,8 +1,14 @@
+import 'package:baking_app/Baking/models/ingredient.dart';
 import 'package:baking_app/Baking/view/widgets/recipe_widgets/pastries_details_tabs.dart';
 import 'package:flutter/material.dart';
 
-
 class PastryDetailScreen extends StatelessWidget {
+  final Recipe recipe;
+
+  static String routeName = 'detailsScreen';
+
+  const PastryDetailScreen({this.recipe});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,15 +33,20 @@ class PastryDetailScreen extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(vertical:20, horizontal:15),
-                    child: IconButton(
-                  icon: Icon(
-                    Icons.arrow_back,
-                    size: 28,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {},
-                )),
+                    margin: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+                    child: InkWell(
+                    
+                      child: IconButton(
+                        onPressed:() {Navigator.of(context).pop();},
+                        icon: Icon(
+                          Icons.arrow_back,
+                          size: 28,
+                          color: Colors.white,
+                
+                        ),
+                
+                      ),
+                    )),
               ]),
             ),
             Padding(
