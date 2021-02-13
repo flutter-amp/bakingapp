@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 
 
 class AddRecipePageScreen extends StatefulWidget {
+  static const routeName = 'recipeAdd';
+ 
   @override
   _AddRecipePageScreenState createState() => _AddRecipePageScreenState();
 }
@@ -27,18 +29,19 @@ class _AddRecipePageScreenState extends State<AddRecipePageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return  Scaffold(
+      appBar: AppBar(
+          title: Text("Add Recipe"),
+        ),
         body: PageView(
           controller: _pageController,
-          
           children: [
-            AddRecipeScreen(),
+           AddRecipeScreen(),
              AddRecipeScreen(),
            PastryDetailScreen(),
           ],
         ),
-      ),
+      
     );
   }
 }

@@ -5,3 +5,7 @@ class Ingredient{
 
   Ingredient(this.name, this.quantity, this.measurment);
 }
+
+class Recipe{
+  
+}

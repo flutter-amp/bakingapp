@@ -24,12 +24,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
   @override
   Widget build(BuildContext context) {
 
-    return MaterialApp(
-          home: Scaffold(
-        appBar: AppBar(
-          title: Text("Add Recipe"),
-        ),
-        body: Padding(
+    return Padding(
           padding: const EdgeInsets.all(16.0),
           child: Form(
             child: ListView(children: <Widget>[
@@ -37,8 +32,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
               AddIngredients(),
             ]),
           ),
-        ),
-      ),
+    
     );
   }
 }

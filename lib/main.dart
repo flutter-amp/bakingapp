@@ -1,3 +1,4 @@
+import 'package:baking_app/Baking/view/screens/baking_route.dart';
 import 'package:baking_app/tabsNavigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
@@ -17,8 +18,8 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.red[300],
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home:TabsNavigation(),
-   //   onGenerateRoute: ,
+     // home:TabsNavigation(),
+     onGenerateRoute:BakingAppRoute.generateRoute ,
     );
   }
 }
