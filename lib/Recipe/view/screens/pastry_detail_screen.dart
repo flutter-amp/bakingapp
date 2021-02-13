@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import '../widgets/pastries_details_tabs.dart';
 
-
-
 class PastryDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       home: Scaffold(
         // appBar: AppBar(
@@ -15,25 +12,30 @@ class PastryDetailScreen extends StatelessWidget {
         // ),
         body: Column(
           children: <Widget>[
-              
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Stack(
-                alignment: Alignment.topLeft,
-                children: <Widget>[
-             
+            Container(
+              child: Stack(alignment: Alignment.topLeft, children: <Widget>[
                 Container(
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(25),
+                        bottomRight: Radius.circular(30)),
                     child: Image.asset(
                       "assets/images/Spaghetti.jpg",
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                IconButton(icon: Icon(Icons.arrow_back,size: 23,color: Colors.white,),onPressed: (){},),
+                Container(
+                  margin: EdgeInsets.symmetric(vertical:20, horizontal:15),
+                    child: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back,
+                    size: 28,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {},
+                )),
               ]),
-             
             ),
             Padding(
               padding: const EdgeInsets.symmetric(
@@ -45,13 +47,13 @@ class PastryDetailScreen extends StatelessWidget {
                 textAlign: TextAlign.justify,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 16,
+                  fontSize: 20,
                 ),
               ),
             ),
 
             PastriesDetailsTabs(),
-          
+
             // PastriesDetailsTabs(),
           ],
         ),
