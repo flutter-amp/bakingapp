@@ -47,13 +47,10 @@ class PasteryItem extends StatelessWidget {
                       margin: EdgeInsets.only(bottom: 15),
                       child: Text(
                         'Blueberry Cake',
-                        style: TextStyle(
-                          color:Color.fromRGBO(10, 56, 92, 1),
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
+                        style: Theme.of(context).textTheme.headline5,
                         ),
                       ),
-                    ),
+                    
                     iconBuilder('${30} mins', Icons.schedule,context),
                     iconBuilder('${5} servings', Icons.people,context),
                   ],

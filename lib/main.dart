@@ -15,6 +15,22 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        textTheme: ThemeData.light().textTheme.copyWith(
+              bodyText1: TextStyle(
+                color: Color.fromRGBO(20, 51, 51, 1),
+              ),
+              bodyText2: TextStyle(
+                color: Color.fromRGBO(20, 51, 51, 1),
+              ),
+              headline5: TextStyle(
+                color:Color.fromRGBO(10, 56, 92, 1),
+                // fontSize: 20,
+                // fontFamily: 'RobotoCondensed',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+        
+        //backgroundColor:Color.fromRGBO(125,125 ,125 , 0.1),
         accentColor: Colors.red[300],
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
