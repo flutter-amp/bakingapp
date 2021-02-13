@@ -1,3 +1,4 @@
+import 'package:baking_app/screens/pastries_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,10 +14,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home:Scaffold(
-        appBar: AppBar(title: Text('Initial',style: TextStyle(color:Colors.black87),),backgroundColor: Color.fromRGBO(0, 0, 0, 0),elevation: 0,),
-        body:Container(),
-      )
+      home:PastriesScreen()
     );
   }
 }
