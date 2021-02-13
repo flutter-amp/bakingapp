@@ -1,6 +1,7 @@
-import 'package:baking_app/Baking/view/screens/recipe_screen/pastries_screen.dart';
-import 'package:baking_app/Baking/view/screens/recipe_screen/user_pastries_screen.dart';
 import 'package:flutter/material.dart';
+
+import 'Baking/view/screens/recipe_screens/pastries_screen.dart';
+import 'Baking/view/screens/recipe_screens/user_pastries_screen.dart';
 
 /// This is the stateful widget that the main application instantiates.
 class TabsNavigation extends StatefulWidget {
