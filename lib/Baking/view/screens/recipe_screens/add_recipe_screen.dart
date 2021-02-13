@@ -1,14 +1,12 @@
 import 'package:baking_app/Baking/bloc/recipe_bloc/recipe_bloc.dart';
 import 'package:baking_app/Baking/bloc/recipe_bloc/recipe_event.dart';
-import 'package:flutter/material.dart';
-
-import 'package:baking_app/Baking/view/widgets/recipe_widgets/add_directions.dart';
-import 'package:baking_app/Baking/view/widgets/recipe_widgets/add_ingredients.dart';
 import 'package:baking_app/Baking/models/ingredient.dart';
 import 'package:baking_app/Baking/models/recipe.dart';
+import 'package:baking_app/Baking/view/widgets/recipe_widgets/add_directions.dart';
 import 'package:baking_app/Baking/view/widgets/recipe_widgets/add_general_info.dart';
+import 'package:baking_app/Baking/view/widgets/recipe_widgets/add_ingredients.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 
 class AddRecipeScreen extends StatefulWidget {
   static const routeName = 'recipeAdd';
@@ -30,7 +28,6 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
     _imageController.dispose();
     super.dispose();
   }
-
   void onSave(BuildContext context ){
     _form.currentState.save();
     print(_recipe.name);
@@ -39,15 +36,23 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
      
      
   }
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Add Recipe"),
+    return Scaffold(
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
         ),
-        body: Padding(
+        title: Text(
+          'Add Recipe',
+          style: TextStyle(color: Colors.black87),
+        ),
+        backgroundColor: Color.fromRGBO(0, 0, 0, 0),
+        elevation: 0,
+      ),
+      body: Container(
+        color: Color.fromRGBO(125, 125, 125, 0.1),
+        child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Form(
             key: _form,

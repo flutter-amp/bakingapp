@@ -1,5 +1,7 @@
+
 import 'package:baking_app/Baking/bloc/recipe_bloc/recipe_bloc.dart';
 import 'package:baking_app/Baking/bloc/recipe_bloc/recipe_state.dart';
+import 'package:baking_app/Baking/view/screens/recipe_screens/add_recipe_screen.dart';
 import 'package:baking_app/Baking/view/widgets/recipe_widgets/pastery_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,11 +26,13 @@ class PastriesScreen extends StatelessWidget {
         }
         else if(state is RecipeSuccessfull){
           final recipes=state.recipes;
-        return Container(
-            color: Color.fromRGBO(125, 125, 125, 0.1),
-            child: Column(
-            children:  recipes.map((recipe) =>  PasteryItem(recipe)).toList()
-            ));
+        return SingleChildScrollView(
+                  child: Container(
+              color: Color.fromRGBO(125, 125, 125, 0.1),
+              child: Column(
+              children:  recipes.map((recipe) =>  PasteryItem(recipe)).toList()
+              )),
+        );
         }
            return CircularProgressIndicator();
       }
@@ -42,5 +46,6 @@ class PastriesScreen extends StatelessWidget {
         },
       ),
     );
+
   }
 }

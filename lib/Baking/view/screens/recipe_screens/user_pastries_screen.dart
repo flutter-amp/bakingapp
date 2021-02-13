@@ -7,14 +7,16 @@ class UserPastriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text('Your Posts',style: TextStyle(color:Colors.black87),),backgroundColor: Color.fromRGBO(0, 0, 0, 0),elevation: 0,),
-        body:Container(
-          color:Color.fromRGBO(125,125 ,125 , 0.1),
-          child:Column(
-            children:[
-                UserPasteryItem(),
-                 UserPasteryItem(),
-            ]
-          )
+        body:SingleChildScrollView(
+                  child: Container(
+            color:Color.fromRGBO(125,125 ,125 , 0.1),
+            child:Column(
+              children:[
+                  UserPasteryItem(),
+                   UserPasteryItem(),
+              ]
+            )
+          ),
         ),
       );
   }

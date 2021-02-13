@@ -1,3 +1,4 @@
+import 'package:baking_app/Baking/view/screens/user-screens/user_profile_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'Baking/view/screens/recipe_screens/pastries_screen.dart';
@@ -19,10 +20,7 @@ class _TabsNavigationState extends State<TabsNavigation> {
   static List<Widget> _widgetOptions = <Widget>[
     UserPastriesScreen(),
     PastriesScreen(),
-    Text(
-      'User Profile',
-      style: optionStyle,
-    ),
+    UserProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
