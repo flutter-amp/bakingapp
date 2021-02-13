@@ -1,6 +1,6 @@
+import 'package:baking_app/Baking/view/widgets/recipe_widgets/add_general_info.dart';
+import 'package:baking_app/Baking/view/widgets/recipe_widgets/add_ingredients.dart';
 import 'package:flutter/material.dart';
-import '../widgets/add_general_info.dart';
-import '../widgets/add_ingredients.dart';
 
 
 

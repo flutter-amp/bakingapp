@@ -1,8 +1,7 @@
-import 'package:baking_app/Recipe/view/screens/pastries_screen.dart';
 import 'package:baking_app/tabsNavigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
-import './Recipe/view/screens/pastry_detail_screen.dart';
+
 
 void main() {
   runApp(MyApp());

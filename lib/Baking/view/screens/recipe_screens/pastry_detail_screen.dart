@@ -1,5 +1,6 @@
+import 'package:baking_app/Baking/view/widgets/recipe_widgets/pastries_details_tabs.dart';
 import 'package:flutter/material.dart';
-import '../widgets/pastries_details_tabs.dart';
+
 
 class PastryDetailScreen extends StatelessWidget {
   @override

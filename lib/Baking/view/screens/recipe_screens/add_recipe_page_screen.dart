@@ -1,7 +1,8 @@
+import 'package:baking_app/Baking/view/screens/recipe_screens/add_recipe_screen.dart';
+import 'package:baking_app/Baking/view/screens/recipe_screens/pastry_detail_screen.dart';
 import 'package:flutter/material.dart';
 
-import './add_recipe_screen.dart';
-import './pastry_detail_screen.dart';
+
 
 
 

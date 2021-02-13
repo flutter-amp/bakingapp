@@ -1,4 +1,5 @@
-import 'package:baking_app/Recipe/view/widgets/pastery_item.dart';
+
+import 'package:baking_app/Baking/view/widgets/pastery_item.dart';
 import 'package:flutter/material.dart';
 
 class PastriesScreen extends StatelessWidget {
