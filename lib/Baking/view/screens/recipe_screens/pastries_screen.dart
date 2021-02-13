@@ -1,7 +1,8 @@
 
-import 'package:baking_app/Baking/view/screens/recipe_screens/add_recipe_page_screen.dart';
 import 'package:baking_app/Baking/view/widgets/recipe_widgets/pastery_item.dart';
 import 'package:flutter/material.dart';
+
+import 'add_recipe_screen.dart';
 
 class PastriesScreen extends StatelessWidget {
   @override
@@ -18,7 +19,7 @@ class PastriesScreen extends StatelessWidget {
           )
         ),
         floatingActionButton: FloatingActionButton(child:Icon(Icons.add),onPressed: (){ Navigator.of(context)
-                    .pushNamed(AddRecipePageScreen.routeName);},),
+                    .pushNamed(AddRecipeScreen.routeName);},),
       );
   }
 }
