@@ -8,7 +8,6 @@ class RecipeCreate extends RecipeEvent{
   final Recipe recipe;
   const RecipeCreate(this.recipe);
 
-
   @override
 List<Object> get props => [recipe];
 }

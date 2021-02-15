@@ -56,7 +56,7 @@ final Recipe recipe;
                   Container(
                     margin: EdgeInsets.only(bottom: 15),
                     child: Text(
-                      '${recipe.name}',
+                      '${recipe.title}',
                       style: Theme.of(context).textTheme.headline5,
                     ),
                   ),

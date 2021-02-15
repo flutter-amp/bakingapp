@@ -21,7 +21,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
   final _form = GlobalKey<FormState>();
 
 
-  var _recipe = Recipe(null,0,"",null,List<Ingredient>(),List<String>());
+   var _recipe = Recipe(title:"",servings: 0,duration: "");
   void dispose() {
     _priceFocusNode.dispose();
     _descriptionFocusNode.dispose();
@@ -29,10 +29,10 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
     super.dispose();
   }
   void onSave(BuildContext context ){
-    _form.currentState.save();
-    print(_recipe.name);
-    print(_recipe.steps[0]);
-     BlocProvider.of<RecipeBloc>(context).add(RecipeCreate(_recipe));
+     _form.currentState.save();
+    // print(_recipe.name);
+    // print(_recipe.steps[0]);
+    BlocProvider.of<RecipeBloc>(context).add(RecipeCreate(_recipe));
      
      
   }
@@ -67,11 +67,11 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                 ),
                 Expanded(child: Divider()),
               ]),
-              AddGeneralInfo(_recipe),
+               AddGeneralInfo(_recipe),
               SizedBox(height: 20),
-              AddIngredients(),
+              //AddIngredients(),
               SizedBox(height: 20),
-              AddDirections(_recipe),
+              // AddDirections(_recipe),
               SizedBox(
                 height: 20,
               ),

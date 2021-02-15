@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_statusbarcolor: ^0.2.3  
+  http: ^0.12.2
   equatable: ^1.2.6
   flutter_bloc: ^6.1.2
 

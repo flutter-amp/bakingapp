@@ -21,7 +21,8 @@ class _PastriesDetailsTabsState extends State<PastriesDetailsTabs> {
             children: [
               Container(
                 child: TabBar(
-                  labelColor: Colors.indigo,
+                  labelColor: Colors.red[300],
+                  indicatorColor:Colors.red[300],
                   tabs: <Widget>[
                     Tab(
                       iconMargin: EdgeInsets.all(4),

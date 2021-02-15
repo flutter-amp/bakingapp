@@ -40,7 +40,7 @@ class _AddGeneralInfoState extends State<AddGeneralInfo> {
             },
             onSaved: (value){
               print("here");
-              widget.recipe.name=value;
+               widget.recipe.title=value;
           
             },
           ),
@@ -54,7 +54,7 @@ class _AddGeneralInfoState extends State<AddGeneralInfo> {
               FocusScope.of(context).requestFocus(_descriptionFocusNode);
             },
               onSaved: (value){
-              widget.recipe.serving=int.parse(value);
+              widget.recipe.servings=int.parse(value);
             },
           ),
           TextFormField(

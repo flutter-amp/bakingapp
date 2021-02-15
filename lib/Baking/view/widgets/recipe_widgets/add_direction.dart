@@ -19,7 +19,7 @@ class AddDirectionItem extends StatelessWidget {
             maxLines: 5,
             onSaved: (value){
               print("value "+value);
-              recipe.steps.add(value);
+              // recipe.steps.add(value);
             },
           ),
         ),
