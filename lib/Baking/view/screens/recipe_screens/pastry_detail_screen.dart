@@ -55,7 +55,7 @@ class PastryDetailScreen extends StatelessWidget {
                 vertical: 10,
               ),
               child: Text(
-                "Stawberry And cherry pancakes with Honey Maple syrup",
+                "${recipe.name}",
                 textAlign: TextAlign.justify,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -64,7 +64,7 @@ class PastryDetailScreen extends StatelessWidget {
               ),
             ),
 
-            PastriesDetailsTabs(),
+            PastriesDetailsTabs(recipe),
 
             // PastriesDetailsTabs(),
           ],

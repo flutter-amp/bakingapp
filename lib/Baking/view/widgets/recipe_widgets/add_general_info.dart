@@ -50,6 +50,7 @@ class _AddGeneralInfoState extends State<AddGeneralInfo> {
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.number,
             focusNode: _priceFocusNode,
+            initialValue: "0",
             onFieldSubmitted: (_) {
               FocusScope.of(context).requestFocus(_descriptionFocusNode);
             },

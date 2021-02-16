@@ -7,9 +7,7 @@ RecipeState();
  @override
   List<Object> get props => [];
 } 
-class RecipeInitial extends RecipeState{
- 
-}
+
 class RecipeSuccessfull extends RecipeState{
   final List<Recipe> recipes;
   RecipeSuccessfull([this.recipes=const []]);

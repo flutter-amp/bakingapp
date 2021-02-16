@@ -21,7 +21,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
   final _form = GlobalKey<FormState>();
 
 
-  var _recipe = Recipe(null,0,"",null,List<Ingredient>(),List<String>());
+  var _recipe = Recipe(DateTime.now().toString(),null,0,"",null,List<Ingredient>(),List<String>());
   void dispose() {
     _priceFocusNode.dispose();
     _descriptionFocusNode.dispose();
@@ -32,6 +32,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
     _form.currentState.save();
     print(_recipe.name);
     print(_recipe.steps[0]);
+    print("name 3 "+_recipe.ingredients[0].name);
      BlocProvider.of<RecipeBloc>(context).add(RecipeCreate(_recipe));
      
      
@@ -55,6 +56,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Form(
+          
             key: _form,
             child: ListView(children: <Widget>[
               Row(children: [
@@ -69,7 +71,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
               ]),
               AddGeneralInfo(_recipe),
               SizedBox(height: 20),
-              AddIngredients(),
+              AddIngredients(_recipe),
               SizedBox(height: 20),
               AddDirections(_recipe),
               SizedBox(

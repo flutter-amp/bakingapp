@@ -1,6 +1,14 @@
+import 'package:baking_app/Baking/bloc/recipe_bloc/recipe_bloc.dart';
+import 'package:baking_app/Baking/bloc/recipe_bloc/recipe_event.dart';
+import 'package:baking_app/Baking/models/recipe.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UserPasteryItem extends StatelessWidget {
+  final Recipe recipe;
+
+  const UserPasteryItem({Key key, this.recipe}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -68,7 +76,10 @@ class UserPasteryItem extends StatelessWidget {
                       ),
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                      BlocProvider.of<RecipeBloc>(context).add(RecipeDelete(recipe));
+                    
+                      },
                       child: Row(
                         children: <Widget>[
                           Icon(Icons.delete, color: Colors.red[700]),

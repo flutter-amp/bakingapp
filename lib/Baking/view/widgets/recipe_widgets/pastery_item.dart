@@ -33,7 +33,7 @@ final Recipe recipe;
         child: InkWell(
           onTap: () {
             Navigator.of(context)
-                .pushNamed(PastryDetailScreen.routeName, arguments: null);
+                .pushNamed(PastryDetailScreen.routeName, arguments: recipe);
           },
           child: Row(children: [
             Container(
@@ -60,8 +60,8 @@ final Recipe recipe;
                       style: Theme.of(context).textTheme.headline5,
                     ),
                   ),
-                  iconBuilder('${30} mins', Icons.schedule, context),
-                  iconBuilder('${5} servings', Icons.people, context),
+                  iconBuilder('${recipe.duration} mins', Icons.schedule, context),
+                  iconBuilder('${recipe.serving} servings', Icons.people, context),
                 ],
               ),
             )

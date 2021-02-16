@@ -1,7 +1,11 @@
+import 'package:baking_app/Baking/models/recipe.dart';
 import 'package:flutter/material.dart';
 import './add_ingredient_item.dart';
 
 class AddIngredients extends StatefulWidget {
+  final Recipe recipe;
+
+  const AddIngredients(this.recipe) ;
   @override
   _AddIngredientsState createState() => _AddIngredientsState();
 }
@@ -12,7 +16,7 @@ class _AddIngredientsState extends State<AddIngredients> {
   @override
   void initState() {
     super.initState();
-    list.add(AddIngredientItem());
+    list.add(AddIngredientItem(widget.recipe));
   }
 
   Widget build(BuildContext context) {
@@ -33,7 +37,7 @@ class _AddIngredientsState extends State<AddIngredients> {
             icon: Icon(Icons.add),
             onPressed: () {
               setState(() {
-                list.add(AddIngredientItem());
+                list.add(AddIngredientItem(widget.recipe));
               });
             },
           ),

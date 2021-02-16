@@ -7,8 +7,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
 import 'Baking/bloc/recipe_bloc/recipe_event.dart';
+import './bloc_observer.dart';
 
 void main() {
+    Bloc.observer = SimpleBlocObserver();
   runApp(
     BlocProvider(
 
