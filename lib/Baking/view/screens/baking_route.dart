@@ -15,7 +15,7 @@ class BakingAppRoute {
 
     if (settings.name == AddRecipeScreen.routeName) {
       return MaterialPageRoute(
-          builder: (context) => AddRecipeScreen());
+          builder: (context) => AddRecipeScreen(settings.arguments));
     }
 
     if (settings.name == UserProfileScreen.routeName) {
@@ -40,6 +40,6 @@ class BakingAppRoute {
 
 class RecipeArgument {
   final Recipe recipe;
-  // final bool edit;
-  RecipeArgument({this.recipe});
+   final bool add;
+  RecipeArgument({this.recipe,this.add});
 }

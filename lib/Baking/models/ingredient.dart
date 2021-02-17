@@ -1,6 +1,6 @@
 class Ingredient{
-  final id;
- final String name;
+  final int id;
+  final String name;
   final int quantity;
   final String measurment;
 

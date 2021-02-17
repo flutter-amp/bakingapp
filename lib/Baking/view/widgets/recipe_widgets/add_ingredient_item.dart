@@ -87,7 +87,7 @@ class _AddIngredientItemState extends State<AddIngredientItem> {
                       } catch (_) {}
                     },
                     onSaved: (newValue) => widget.recipe.ingredients
-                        .add(Ingredient(DateTime.now().toString(),name, quantity, dropdownValue)),
+                        .add(Ingredient(1,name, quantity, dropdownValue)),
                   ),
                 ),
               ),

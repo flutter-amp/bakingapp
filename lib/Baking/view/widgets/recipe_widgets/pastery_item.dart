@@ -56,12 +56,12 @@ final Recipe recipe;
                   Container(
                     margin: EdgeInsets.only(bottom: 15),
                     child: Text(
-                      '${recipe.name}',
+                      '${recipe.title}',
                       style: Theme.of(context).textTheme.headline5,
                     ),
                   ),
                   iconBuilder('${recipe.duration} mins', Icons.schedule, context),
-                  iconBuilder('${recipe.serving} servings', Icons.people, context),
+                  iconBuilder('${recipe.servings} servings', Icons.people, context),
                 ],
               ),
             )

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:baking_app/Baking/models/recipe.dart';
 import 'package:equatable/equatable.dart';
 
@@ -6,8 +8,8 @@ abstract class RecipeEvent extends Equatable{
 }
 class RecipeCreate extends RecipeEvent{
   final Recipe recipe;
-  const RecipeCreate(this.recipe);
-
+  final File file;
+  const RecipeCreate(this.recipe,this.file);
 
   @override
 List<Object> get props => [recipe];

@@ -1,4 +1,5 @@
 import 'package:baking_app/Baking/models/recipe.dart';
+import 'package:baking_app/Baking/view/screens/comment_screens/comment_screen.dart';
 import 'package:flutter/material.dart';
 
 import './ingredients_list.dart';
@@ -64,7 +65,7 @@ class _PastriesDetailsTabsState extends State<PastriesDetailsTabs> {
                   children: <Widget>[
               IngredientsList(widget.recipe.ingredients),
             Column(children:widget.recipe.steps.map((step) => Text(step)).toList()),
-            Text("comment"), 
+             CommentScreen(), 
                   ])),
             ],
           ),

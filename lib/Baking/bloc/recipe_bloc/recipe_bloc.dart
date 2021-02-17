@@ -1,46 +1,54 @@
 import 'package:baking_app/Baking/bloc/recipe_bloc/recipe_event.dart';
 import 'package:baking_app/Baking/bloc/recipe_bloc/recipe_state.dart';
 import 'package:baking_app/Baking/models/recipe.dart';
+import 'package:baking_app/Baking/repository/recipe/recipe_repository.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RecipeBloc extends Bloc<RecipeEvent, RecipeState> {
-  RecipeBloc() : super(RecipeInProgress());
-List<Recipe> time = [Recipe("1","f",3,"G","f",[],[])];
-    
+  final RecipeRepository recipeRepository;
+  
+   RecipeBloc({@required this.recipeRepository})
+      : assert(recipeRepository != null),
+        super(RecipeInProgress());
+
+List<Recipe> time = [];
   @override
   Stream<RecipeState> mapEventToState(RecipeEvent event) async* {
 
     if (event is RecipeCreate) {
-      
+
       try {
-        await Future.delayed(Duration(seconds: 3));
-        time.add(event.recipe);
-           print("length ${time.length}");
-       
-        yield RecipeSuccessfull(time);
-      } catch (_) {
+        await recipeRepository.createRecipe(event.recipe);
+        
+       final recipe = await recipeRepository.getRecipes();
+        yield RecipeSuccessfull(recipe);
+      } catch (e) {
+            
+             print(e);
         yield RecipeFailure();
       }
     }
     if( event is RecipeRetrieve){
       yield RecipeInProgress();
-      await Future.delayed(Duration(seconds: 3));
        try {
-        print("length ${time.length}");
-       
-        yield RecipeSuccessfull(time);
-      } catch (_) {
+       final recipes = await recipeRepository.getRecipes();
+        yield RecipeSuccessfull(recipes);
+      } catch ( error) {
+        
+        print(error);
         yield RecipeFailure();
       }
     }
-    if (event is RecipeDelete) {
-      try {
-           print("length ${time.length}");
-       await Future.delayed(Duration(seconds: 3));
-        time.removeWhere((element) => element.id==event.recipe.id);
-         print("length ${time.length}");
-        yield RecipeSuccessfull(time);
-      } catch (_) {
+    if( event is RecipeDelete){
+      yield RecipeInProgress();
+       try {
+         await recipeRepository.deleteRecipe(event.recipe.id);
+       final recipes = await recipeRepository.getRecipes();
+        yield RecipeSuccessfull(recipes);
+      } catch ( error) {
+        
+        print(error);
         yield RecipeFailure();
       }
     }

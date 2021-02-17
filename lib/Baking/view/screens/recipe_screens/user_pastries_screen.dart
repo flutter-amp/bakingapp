@@ -20,7 +20,7 @@ class UserPastriesScreen extends StatelessWidget {
                   child: Container(
               color: Color.fromRGBO(125, 125, 125, 0.1),
               child: Column(
-              children:  recipes.map((recipe) =>    UserPasteryItem(key: Key(recipe.id),recipe:recipe ,)).toList()
+              children:  recipes.map((recipe) =>    UserPasteryItem(key: Key(recipe.id.toString()),recipe:recipe ,)).toList()
               )),
         );
        

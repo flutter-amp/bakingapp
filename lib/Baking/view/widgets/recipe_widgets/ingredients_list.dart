@@ -12,7 +12,7 @@ class IngredientsList extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
           children: ingredients
-              .map((ingredient) => IngredientItem(key:Key(ingredient.id),ingredient:ingredient))
+              .map((ingredient) => IngredientItem(key:Key(ingredient.id.toString()),ingredient:ingredient))
               .toList()),
     );
   }

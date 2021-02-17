@@ -35,7 +35,6 @@ class PastryDetailScreen extends StatelessWidget {
                 Container(
                     margin: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
                     child: InkWell(
-                    
                       child: IconButton(
                         onPressed:() {Navigator.of(context).pop();},
                         icon: Icon(
@@ -55,7 +54,7 @@ class PastryDetailScreen extends StatelessWidget {
                 vertical: 10,
               ),
               child: Text(
-                "${recipe.name}",
+                "${recipe.title}",
                 textAlign: TextAlign.justify,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,

@@ -1,15 +1,21 @@
+
+import 'dart:io';
+
 import 'package:baking_app/Baking/bloc/recipe_bloc/recipe_bloc.dart';
 import 'package:baking_app/Baking/bloc/recipe_bloc/recipe_event.dart';
 import 'package:baking_app/Baking/models/ingredient.dart';
 import 'package:baking_app/Baking/models/recipe.dart';
-import 'package:baking_app/Baking/view/widgets/recipe_widgets/add_directions.dart';
 import 'package:baking_app/Baking/view/widgets/recipe_widgets/add_general_info.dart';
-import 'package:baking_app/Baking/view/widgets/recipe_widgets/add_ingredients.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../baking_route.dart';
+
 class AddRecipeScreen extends StatefulWidget {
   static const routeName = 'recipeAdd';
+  final RecipeArgument args;
+
+  const AddRecipeScreen(this.args);
   @override
   _AddRecipeScreenState createState() => _AddRecipeScreenState();
 }
@@ -17,35 +23,55 @@ class AddRecipeScreen extends StatefulWidget {
 class _AddRecipeScreenState extends State<AddRecipeScreen> {
   final _priceFocusNode = FocusNode();
   final _descriptionFocusNode = FocusNode();
-  final _imageController = TextEditingController();
   final _form = GlobalKey<FormState>();
+    var _recipe ;
 
-
-  var _recipe = Recipe(DateTime.now().toString(),null,0,"",null,List<Ingredient>(),List<String>());
+@override
+  void initState() {
+    // TODO: implement initState
+    _recipe =widget.args.add? Recipe(id:1,title: null,servings: 0,duration: null,ingredients: List<Ingredient>(),steps: List<String>() ,imageurl: null):widget.args.recipe;
+    super.initState();
+  }
+  // var _recipe = Recipe(DateTime.now().toString(),null,0,"",null,List<Ingredient>(),List<String>(),);
+    
+    
+    File _file;
   void dispose() {
     _priceFocusNode.dispose();
     _descriptionFocusNode.dispose();
-    _imageController.dispose();
+
     super.dispose();
   }
   void onSave(BuildContext context ){
+    print("again");
     _form.currentState.save();
-    print(_recipe.name);
-    print(_recipe.steps[0]);
-    print("name 3 "+_recipe.ingredients[0].name);
-     BlocProvider.of<RecipeBloc>(context).add(RecipeCreate(_recipe));
+     print("again again");
+    print(_recipe.title);
+  //  print(_recipe.steps[0]);
+  //  print("name 3 "+_recipe.ingredients[0].name);
+   //  BlocProvider.of<RecipeBloc>(context).add(RecipeCreate(_recipe));
+  //   _form.currentState.save();
+    // print(_recipe.name);
+    // print(_recipe.steps[0]);
+    if(widget.args.add){
+    BlocProvider.of<RecipeBloc>(context).add(RecipeCreate(_recipe,_file));
+    }else{
+       BlocProvider.of<RecipeBloc>(context).add(RecipeUpdate(_recipe));
+    }
+  
      
      
   }
   @override
   Widget build(BuildContext context) {
+    final bool add= widget.args.add;
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
           color: Colors.black, //change your color here
         ),
         title: Text(
-          'Add Recipe',
+          add?'Add Recipe':'Edit Recipe',
           style: TextStyle(color: Colors.black87),
         ),
         backgroundColor: Color.fromRGBO(0, 0, 0, 0),
@@ -69,11 +95,11 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                 ),
                 Expanded(child: Divider()),
               ]),
-              AddGeneralInfo(_recipe),
+               AddGeneralInfo(add,_recipe,_file),
               SizedBox(height: 20),
-              AddIngredients(_recipe),
+           //   AddIngredients(_recipe),
               SizedBox(height: 20),
-              AddDirections(_recipe),
+              // AddDirections(_recipe),
               SizedBox(
                 height: 20,
               ),
