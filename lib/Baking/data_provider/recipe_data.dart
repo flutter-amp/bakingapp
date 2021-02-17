@@ -5,15 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class RecipeDataProvider{
-  final _baseUrl = 'http://192.168.1.107:8181';
+  final _baseUrl = 'http://192.168.43.122:8181';
   final http.Client httpClient;
 
   RecipeDataProvider({@required this.httpClient}) : assert(httpClient != null);
 
   Future<List<Recipe>> getRecipes()async{
     final response = await httpClient.get('$_baseUrl/recipes');
-   // print('satus coooooooooooooooooooooooooo');
-    //print(response.statusCode);
+    print('satus coooooooooooooooooooooooooooooooooooooooooooooooooooo');
+    print(response.statusCode);
     if (response.statusCode == 200) {
       final recipes = jsonDecode(response.body) as List;
       return recipes.map((recipe) => Recipe.fromJson(recipe)).toList();
@@ -39,7 +39,7 @@ class RecipeDataProvider{
   
   Future<Recipe> createRecipe(Recipe recipe) async {  
     final response = await httpClient.post(
-      Uri.http('192.168.1.107:8181', '/recipes/new'),
+      Uri.http('192.168.43.122:8181', '/recipes/new'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

@@ -20,7 +20,8 @@ class CommentCreate extends CommentEvent{
 }
 
 class CommentRetrieve extends CommentEvent{
- const CommentRetrieve();
+  final int recipeId;
+ const CommentRetrieve(this.recipeId);
   @override
   List<Object> get props => [];
 
