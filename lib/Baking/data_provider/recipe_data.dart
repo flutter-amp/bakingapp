@@ -15,8 +15,8 @@ class RecipeDataProvider{
 
   Future<List<Recipe>> getRecipes()async{
     final response = await httpClient.get('$_baseUrl/recipes');
-   // print('satus coooooooooooooooooooooooooo');
-    //print(response.statusCode);
+    print('satus coooooooooooooooooooooooooooooooooooooooooooooooooooo');
+    print(response.statusCode);
     if (response.statusCode == 200) {
       final recipes = jsonDecode(response.body) as List;
       return recipes.map((recipe) => Recipe.fromJson(recipe)).toList();
@@ -53,6 +53,8 @@ class RecipeDataProvider{
         'title': recipe.title,
         'servings': recipe.servings,
         'duration': recipe.duration,
+        // 'ingredients':recipe.ingredients,
+        
       }),
     );
        print("shhhhhhhh");

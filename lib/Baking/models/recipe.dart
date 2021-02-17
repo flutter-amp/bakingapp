@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:equatable/equatable.dart';
@@ -22,13 +23,19 @@ class Recipe extends Equatable {
   @override
   // TODO: implement props
   List<Object> get props => [id,title,servings,duration];
+//  List<Map> toJson(){
+//     List<Map> ingredient=this.ingredients!=null? this.ingredients.map((ing) =>jsonEncode(ing));
+//     return ingredient;
+// }
 
   factory Recipe.fromJson(Map<String, dynamic> json) {
+
     return Recipe(
       id: json['id'],
       title: json['title'],
       servings: json['servings'],
       duration: json['duration'],
+    //  ingredients:List<Ingredient>.from(json["ingredients"].map((ingredient)=>ingredient))
     );
   }
 

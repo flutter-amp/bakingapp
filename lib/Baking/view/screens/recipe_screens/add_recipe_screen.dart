@@ -5,7 +5,9 @@ import 'package:baking_app/Baking/bloc/recipe_bloc/recipe_bloc.dart';
 import 'package:baking_app/Baking/bloc/recipe_bloc/recipe_event.dart';
 import 'package:baking_app/Baking/models/ingredient.dart';
 import 'package:baking_app/Baking/models/recipe.dart';
+import 'package:baking_app/Baking/view/widgets/recipe_widgets/add_directions.dart';
 import 'package:baking_app/Baking/view/widgets/recipe_widgets/add_general_info.dart';
+import 'package:baking_app/Baking/view/widgets/recipe_widgets/add_ingredients.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -97,9 +99,9 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
               ]),
                AddGeneralInfo(add,_recipe,_file),
               SizedBox(height: 20),
-           //   AddIngredients(_recipe),
+             AddIngredients(_recipe),
               SizedBox(height: 20),
-              // AddDirections(_recipe),
+               AddDirections(_recipe),
               SizedBox(
                 height: 20,
               ),

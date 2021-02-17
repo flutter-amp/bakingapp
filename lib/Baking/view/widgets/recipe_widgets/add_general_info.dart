@@ -19,9 +19,7 @@ class AddGeneralInfo extends StatefulWidget {
 }
 
 class _AddGeneralInfoState extends State<AddGeneralInfo> {
-  final _priceFocusNode = FocusNode();
-  final _descriptionFocusNode = FocusNode();
-  final _imageController = TextEditingController();
+
   File _image;
   final picker = ImagePicker();
   Future getImage() async {
@@ -43,13 +41,7 @@ class _AddGeneralInfoState extends State<AddGeneralInfo> {
       }
     });
   }
-  @override
-  void dispose() {
-    _priceFocusNode.dispose();
-    _descriptionFocusNode.dispose();
-    _imageController.dispose();
-    super.dispose();
-  }
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -64,9 +56,7 @@ class _AddGeneralInfoState extends State<AddGeneralInfo> {
             decoration: InputDecoration(labelText: 'Recipe Name'),
             textInputAction: TextInputAction.next,
             initialValue: widget.recipe.title,
-            onFieldSubmitted: (_) {
-              FocusScope.of(context).requestFocus(_priceFocusNode);
-            },
+          
             onSaved: (value){
               print("here");
                widget.recipe.title=value;
@@ -79,11 +69,9 @@ class _AddGeneralInfoState extends State<AddGeneralInfo> {
           
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.number,
-            focusNode: _priceFocusNode,
+           
             initialValue: widget.recipe.servings.toString(),
-            onFieldSubmitted: (_) {
-              FocusScope.of(context).requestFocus(_descriptionFocusNode);
-            },
+           
               onSaved: (value){
               widget.recipe.servings=int.parse(value);
             },
@@ -91,7 +79,7 @@ class _AddGeneralInfoState extends State<AddGeneralInfo> {
              SizedBox(height:10),
           TextFormField(
             decoration: InputDecoration(labelText: 'Duration'),
-            focusNode: _descriptionFocusNode,
+            
              initialValue: widget.recipe.duration,
             keyboardType: TextInputType.text,
               onSaved: (value){

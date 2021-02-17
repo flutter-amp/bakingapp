@@ -10,10 +10,10 @@ class CommentDataProvider{
 
   CommentDataProvider({@required this.httpClient}) : assert(httpClient != null);
 
-  Future<List<Comment>> getComments(int rid)async{
+  Future<List<Comment>> getComments(int rid) async{
+     print(rid);
     final response = await httpClient.get('$_baseUrl/recipe/comments/$rid');
-   // print('satus coooooooooooooooooooooooooo');
-    //print(response.statusCode);
+    print('getttinggg commmeeentnnntsssss');
     if (response.statusCode == 200) {
       final comments = jsonDecode(response.body) as List;
       return comments.map((comment) => Comment.fromJson(comment)).toList();
@@ -55,7 +55,7 @@ class CommentDataProvider{
         print(response.body);
 
     if (response.statusCode == 201) {
-      return Comment.fromJson(jsonDecode(response.body));
+     // return Comment.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Failed to create comment.');
     }
@@ -76,8 +76,8 @@ Future<void> updateComment(Comment comment) async {
         'username': comment.username,
       }),
     );
-
-    if (response.statusCode != 204) {
+ print('status code.${response.statusCode}');
+    if (response.statusCode != 200) {
       throw Exception('Failed to update comment.');
     }
   }

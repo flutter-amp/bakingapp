@@ -9,7 +9,8 @@ class RecipeRepository{
   RecipeRepository({@required this.dataProvider})
       : assert(dataProvider != null);
 
-Future<List<Recipe>> getRecipes() async {
+Future<List<Recipe>> getRecipes() async {print('getttttttttttttttttttttt');
+
     return await dataProvider.getRecipes();
   }
 

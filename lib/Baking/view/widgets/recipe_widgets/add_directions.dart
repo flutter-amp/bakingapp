@@ -17,7 +17,13 @@ class _AddDirectionsState extends State<AddDirections> {
   @override
   void initState() {
     super.initState();
-    list.add(AddDirectionItem(1,widget.recipe));
+    if(widget.recipe.steps==null){
+        list.add(AddDirectionItem(1,widget.recipe,-1));
+    }
+      for(int i=0;i<widget.recipe.ingredients.length;i++){
+      list.add(AddDirectionItem(list.length+1,widget.recipe,i));
+    }
+  
   }
 
   Widget build(BuildContext context) {
@@ -36,7 +42,7 @@ class _AddDirectionsState extends State<AddDirections> {
             icon: Icon(Icons.add),
             onPressed: () {
               setState(() {
-                list.add(AddDirectionItem(list.length + 1,widget.recipe));
+                list.add(AddDirectionItem(list.length + 1,widget.recipe,-1));
               });
             },
           ),

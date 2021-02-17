@@ -62,6 +62,7 @@ class UserPasteryItem extends StatelessWidget {
                   children: <Widget>[
                     InkWell(
                       onTap: () {
+                        print("hereeeeeeeeeeee");
                          Navigator.of(context).pushNamed(AddRecipeScreen.routeName,arguments:RecipeArgument(recipe: recipe,add:false ) );
                       },
                       child: Row(
