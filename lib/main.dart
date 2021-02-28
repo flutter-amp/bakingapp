@@ -7,7 +7,7 @@ import 'package:baking_app/Baking/repository/recipe/recipe_repository.dart';
 import 'package:baking_app/Baking/view/screens/baking_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+
 import 'Baking/bloc/recipe_bloc/recipe_event.dart';
 import 'package:http/http.dart' as http;
 

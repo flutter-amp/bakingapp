@@ -1,9 +1,14 @@
+import 'package:baking_app/Baking/models/recipe.dart';
+import 'package:baking_app/Baking/view/screens/comment_screens/comment_screen.dart';
 import 'package:flutter/material.dart';
 
 import './ingredients_list.dart';
 
 
 class PastriesDetailsTabs extends StatefulWidget {
+  final Recipe recipe;
+
+  const PastriesDetailsTabs( this.recipe);
   @override
   _PastriesDetailsTabsState createState() => _PastriesDetailsTabsState();
 }
@@ -22,7 +27,7 @@ class _PastriesDetailsTabsState extends State<PastriesDetailsTabs> {
               Container(
                 child: TabBar(
                   labelColor: Colors.red[300],
-                  indicatorColor:Colors.red[300],
+                  indicatorColor: Colors.red[300],
                   tabs: <Widget>[
                     Tab(
                       iconMargin: EdgeInsets.all(4),
@@ -54,7 +59,16 @@ class _PastriesDetailsTabsState extends State<PastriesDetailsTabs> {
                   ],
                 ),
               ),
-           IngredientsList(),
+              Container(
+                height: 150,
+                child: TabBarView(
+                  children: <Widget>[
+                    Text("indgrei"),
+                      Text("indgrei"),
+            //  IngredientsList(widget.recipe.ingredients),
+          //  Column(children:widget.recipe.steps.map((step) => Text(step)).toList()),
+             CommentScreen(), 
+                  ])),
             ],
           ),
         ),

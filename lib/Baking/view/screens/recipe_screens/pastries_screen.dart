@@ -6,6 +6,7 @@ import 'package:baking_app/Baking/view/widgets/recipe_widgets/pastery_item.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../baking_route.dart';
 import 'add_recipe_screen.dart';
 
 class PastriesScreen extends StatelessWidget {
@@ -42,7 +43,7 @@ class PastriesScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          Navigator.of(context).pushNamed(AddRecipeScreen.routeName);
+          Navigator.of(context).pushNamed(AddRecipeScreen.routeName,arguments: RecipeArgument(recipe: null,add: true));
         },
       ),
     );

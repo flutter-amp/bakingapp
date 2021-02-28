@@ -1,6 +1,12 @@
+import 'package:baking_app/Baking/models/ingredient.dart';
 import 'package:flutter/material.dart';
 
-class IngredientItems extends StatelessWidget {
+class IngredientItem extends StatelessWidget {
+  final Ingredient ingredient;
+
+  const IngredientItem({Key key, this.ingredient}) : super(key: key);
+
+  
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -8,9 +14,9 @@ class IngredientItems extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text("All Purpose Flour",style: TextStyle(fontWeight: FontWeight.bold),),
+          Text(ingredient.name,style: TextStyle(fontWeight: FontWeight.bold),),
           Text(
-            "1 cup",
+            "${ingredient.quantity} ${ingredient.measurment}",
             style: TextStyle(
               color: Colors.grey,
             ),

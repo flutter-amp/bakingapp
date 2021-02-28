@@ -15,10 +15,12 @@ class RecipeBloc extends Bloc<RecipeEvent, RecipeState> {
 List<Recipe> time = [];
   @override
   Stream<RecipeState> mapEventToState(RecipeEvent event) async* {
-    // TODO: implement mapEventToState
+
     if (event is RecipeCreate) {
+
       try {
         await recipeRepository.createRecipe(event.recipe);
+        
        final recipe = await recipeRepository.getRecipes();
         yield RecipeSuccessfull(recipe);
       } catch (e) {
@@ -30,6 +32,18 @@ List<Recipe> time = [];
       print('heeeeeeeeeeeeeeeeeeeeeeeeeee');
       yield RecipeInProgress();
        try {
+       final recipes = await recipeRepository.getRecipes();
+        yield RecipeSuccessfull(recipes);
+      } catch ( error) {
+        
+        print(error);
+        yield RecipeFailure();
+      }
+    }
+    if( event is RecipeDelete){
+      yield RecipeInProgress();
+       try {
+         await recipeRepository.deleteRecipe(event.recipe.id);
        final recipes = await recipeRepository.getRecipes();
         yield RecipeSuccessfull(recipes);
       } catch ( error) {
