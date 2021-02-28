@@ -39,7 +39,6 @@ class _CommentAreaState extends State<CommentArea> {
                   decoration: InputDecoration.collapsed(
                       hintText: "Enter your comment here"),
                   onSaved: (value) {
-                    print("here");
                     comment.message = value;
                   }),
             ),

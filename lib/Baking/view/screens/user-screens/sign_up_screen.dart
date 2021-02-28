@@ -1,6 +1,12 @@
+import 'package:baking_app/Baking/bloc/user_bloc/user_bloc.dart';
+import 'package:baking_app/Baking/bloc/user_bloc/user_event.dart';
+import 'package:baking_app/Baking/models/user.dart';
+import 'package:baking_app/Baking/view/screens/user-screens/sign_in_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUpScreen extends StatefulWidget {
+    static String routeName = '/signup';
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
 }
@@ -10,6 +16,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _pass = TextEditingController();
   final TextEditingController _confirmPass = TextEditingController();
 
+  var user=User(username:'',password:'',email:'');
+
+ void onSave(BuildContext context ){
+    print("againnnnnnnnnnnnnnnnn");
+    print(user.email);
+    print(user.password);
+    print(user.username);
+    formkey.currentState.save();
+    BlocProvider.of<UserBloc>(context).add(UserCreate(user));
+
+     
+     
+  }
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +42,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         key: formkey,
         child: ListView(
           children: <Widget>[
-            BackButtonWidget(),
+            // BackButtonWidget(),
             SizedBox(
               height: 20,
             ),
@@ -31,13 +55,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       child: Container(
                           margin: EdgeInsets.only(right: 20, left: 10),
                           child: TextFormField(
+                            
                             decoration: InputDecoration(
                               hintText: 'Username',
+           
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                     color: Color.fromRGBO(247, 102, 94, 1)),
                               ),
                             ),
+                          onSaved: (value) {
+                    user.username = value;
+                  },
                             validator: (String value) {
                               if (value.length < 5) {
                                 return 'Username must be atleast 5 characters long';
@@ -57,6 +86,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       child: Container(
                           margin: EdgeInsets.only(right: 20, left: 10),
                           child: TextFormField(
+                             onSaved: (value) {
+                    user.email = value;
+                  },
                             decoration: InputDecoration(
                               hintText: 'Email',
                               focusedBorder: UnderlineInputBorder(
@@ -65,12 +97,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                             ),
                             validator: (String value) {
-                              var emailValid = RegExp(
-                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                  .hasMatch(value);
-                              if (!emailValid) {
-                                return 'Email is not valid';
-                              }
+                             
                               return null;
                             },
                           )))
@@ -87,6 +114,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           margin: EdgeInsets.only(right: 20, left: 10),
                           child: TextFormField(
                             controller: _pass,
+                             onSaved: (value) {
+                    user.password = value;
+                  },
                             decoration: InputDecoration(
                               hintText: 'Password',
                               focusedBorder: UnderlineInputBorder(
@@ -142,7 +172,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 60,
                   child: RaisedButton(
                     onPressed: () {
-                      formkey.currentState.validate();
+                      bool valid = formkey.currentState.validate();
+                      // ignore: unnecessary_statements
+                      valid?onSave(context):(){};
                     },
                     color: Color.fromRGBO(247, 102, 94, 1),
                     child: Text(
@@ -156,6 +188,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
             ),
+            FlatButton(
+              child:Text('Log in'),
+              onPressed: (){
+                Navigator.pop(context);
+              },
+            )
           ],
         ),
       ),
@@ -163,82 +201,82 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 }
 
-class BackButtonWidget extends StatelessWidget {
-  const BackButtonWidget({
-    Key key,
-  }) : super(key: key);
+// class BackButtonWidget extends StatelessWidget {
+//   const BackButtonWidget({
+//     Key key,
+//   }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 200,
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              fit: BoxFit.cover, image: AssetImage('assets/images/sign.jpg'))),
-      child: Positioned(
-          child: Stack(
-        children: <Widget>[
-          Positioned(
-              top: 20,
-              child: Row(
-                children: <Widget>[
-                  IconButton(
-                      icon: Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      }),
-                  Text(
-                    'Back',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      shadows: <Shadow>[
-                        Shadow(
-                          offset: Offset(1.0, 1.0),
-                          blurRadius: 3.0,
-                          color: Color.fromARGB(255, 0, 0, 0),
-                        ),
-                        Shadow(
-                          offset: Offset(2.0, 2.0),
-                          blurRadius: 8.0,
-                          color: Color.fromARGB(255, 0, 0, 0),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              )),
-          Positioned(
-            bottom: 20,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Create New Account',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w900,
-                  fontSize: 28,
-                  shadows: <Shadow>[
-                    Shadow(
-                      offset: Offset(1.0, 1.0),
-                      blurRadius: 3.0,
-                      color: Color.fromARGB(255, 0, 0, 0),
-                    ),
-                    Shadow(
-                      offset: Offset(2.0, 2.0),
-                      blurRadius: 8.0,
-                      color: Color.fromARGB(255, 0, 0, 0),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          )
-        ],
-      )),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       height: 200,
+//       // decoration: BoxDecoration(
+//       //     image: DecorationImage(
+//       //         fit: BoxFit.cover, image: AssetImage('assets/images/sign.jpg'))),
+//       child: Positioned(
+//           child: Stack(
+//         children: <Widget>[
+//           Positioned(
+//               top: 20,
+//               child: Row(
+//                 children: <Widget>[
+//                   IconButton(
+//                       icon: Icon(
+//                         Icons.arrow_back_ios,
+//                         color: Colors.white,
+//                       ),
+//                       onPressed: () {
+//                         Navigator.pop(context);
+//                       }),
+//                   Text(
+//                     'Back',
+//                     style: TextStyle(
+//                       color: Colors.white,
+//                       fontWeight: FontWeight.bold,
+//                       shadows: <Shadow>[
+//                         Shadow(
+//                           offset: Offset(1.0, 1.0),
+//                           blurRadius: 3.0,
+//                           color: Color.fromARGB(255, 0, 0, 0),
+//                         ),
+//                         Shadow(
+//                           offset: Offset(2.0, 2.0),
+//                           blurRadius: 8.0,
+//                           color: Color.fromARGB(255, 0, 0, 0),
+//                         ),
+//                       ],
+//                     ),
+//                   )
+//                 ],
+//               )),
+//           Positioned(
+//             bottom: 20,
+//             child: Padding(
+//               padding: const EdgeInsets.all(8.0),
+//               child: Text(
+//                 'Create New Account',
+//                 style: TextStyle(
+//                   color: Colors.white,
+//                   fontWeight: FontWeight.w900,
+//                   fontSize: 28,
+//                   shadows: <Shadow>[
+//                     Shadow(
+//                       offset: Offset(1.0, 1.0),
+//                       blurRadius: 3.0,
+//                       color: Color.fromARGB(255, 0, 0, 0),
+//                     ),
+//                     Shadow(
+//                       offset: Offset(2.0, 2.0),
+//                       blurRadius: 8.0,
+//                       color: Color.fromARGB(255, 0, 0, 0),
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//             ),
+//           )
+//         ],
+//       )),
+//     );
+//   }
+// }

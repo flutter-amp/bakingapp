@@ -1,18 +1,20 @@
 import 'package:baking_app/Baking/bloc/authentication_boc/authentication_event.dart';
 import 'package:baking_app/Baking/bloc/authentication_boc/authentication_state.dart';
 import 'package:baking_app/Baking/repository/authentication/authentication_repository.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
-  final AuthenticationRepository _authenticationRepository;
+  final AuthenticationRepository authenticationRepository;
 
-  AuthenticationBloc(AuthenticationRepository authenticationRepository)
+   AuthenticationBloc({@required this.authenticationRepository})
       : assert(authenticationRepository != null),
-        _authenticationRepository = authenticationRepository,
         super(AuthenticationInitial());
+
 
   @override
   Stream<AuthenticationState> mapEventToState(AuthenticationEvent event) async* {
+    print('getting hererererererererere');
     if (event is AppLoaded) {
       yield* _mapAppLoadedToState(event);
     }
@@ -30,7 +32,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     yield AuthenticationLoading();
     try {
       await Future.delayed(Duration(milliseconds: 500)); // a simulated delay
-      final currentUser = await _authenticationRepository.getCurrentUser();
+      final currentUser = await authenticationRepository.getCurrentUser();
 
       if (currentUser != null) {
         yield AuthenticationAuthenticated(user: currentUser);
@@ -43,11 +45,12 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   }
 
   Stream<AuthenticationState> _mapUserLoggedInToState(UserLoggedIn event) async* {
+    print("Authenticateddddddddddddddddddddddddddddddd");
     yield AuthenticationAuthenticated(user: event.user);
   }
 
   Stream<AuthenticationState> _mapUserLoggedOutToState(UserLoggedOut event) async* {
-    await _authenticationRepository.signOut();
+    await authenticationRepository.signOut();
     yield AuthenticationNotAuthenticated();
   }
 }

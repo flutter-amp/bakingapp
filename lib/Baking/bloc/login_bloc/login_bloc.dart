@@ -8,13 +8,13 @@ import 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final AuthenticationBloc _authenticationBloc;
-  final AuthenticationRepository _authenticationRecipe;
+  final AuthenticationRepository _authenticationRepository;
 
-  LoginBloc(AuthenticationBloc authenticationBloc, AuthenticationRepository authenticationRecipe)
+  LoginBloc(AuthenticationBloc authenticationBloc, AuthenticationRepository authentication_authenticationRepository)
       : assert(authenticationBloc != null),
-        assert(authenticationRecipe != null),
+        assert(authentication_authenticationRepository != null),
         _authenticationBloc = authenticationBloc,
-        _authenticationRecipe = authenticationRecipe,
+        _authenticationRepository = authentication_authenticationRepository,
         super(LoginInitial());
 
   @override
@@ -26,9 +26,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   Stream<LoginState> _mapLoginWithEmailToState(LoginInWithEmailButtonPressed event) async* {
     yield LoginLoading();
+    print('Nth very weird just happened');
     try {
-      final user = await _authenticationRecipe.signInWithEmailAndPassword(event.email, event.password);
-      if (user != null) {
+      final token = await _authenticationRepository.signInWithEmailAndPassword(event.user);
+        print(token);
+      final user = await _authenticationRepository.getUser(int.parse(token));
+        if (user != null) {
+         print('userEmail');
+          print(user.email);
         _authenticationBloc.add(UserLoggedIn(user: user));
         yield LoginSuccess();
         yield LoginInitial();

@@ -1,14 +1,49 @@
+import 'package:baking_app/Baking/bloc/authentication_boc/authentication_bloc.dart';
+import 'package:baking_app/Baking/bloc/login_bloc/login_bloc.dart';
+import 'package:baking_app/Baking/bloc/login_bloc/login_event.dart';
+import 'package:baking_app/Baking/models/user.dart';
+import 'package:baking_app/Baking/repository/authentication/authentication_repository.dart';
+import 'package:baking_app/Baking/view/screens/user-screens/sign_up_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+
+class AuthForm extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final authService = RepositoryProvider.of<AuthenticationRepository>(context);
+    final authBloc = BlocProvider.of<AuthenticationBloc>(context);
+    return Container(
+      alignment: Alignment.center,
+      child: BlocProvider<LoginBloc>(
+        create: (context) => LoginBloc(authBloc, authService),
+        child: SignInScreen(),
+      ),
+    );
+  }
+}
+
 
 class SignInScreen extends StatefulWidget {
+  static String routeName = '/signin';
   @override
   _SignInScreenState createState() => _SignInScreenState();
 }
 
 class _SignInScreenState extends State<SignInScreen> {
   final formkey = GlobalKey<FormState>();
+
+   var user=User(username:'',password:'',email:'');
+
+ void onSave(BuildContext context ){
+    formkey.currentState.save();
+    BlocProvider.of<LoginBloc>(context).add(LoginInWithEmailButtonPressed(user:user));
+
+     
+     
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +55,10 @@ class _SignInScreenState extends State<SignInScreen> {
           children: <Widget>[
             Container(
               height: 300,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage('assets/images/sign.jpg'))),
+              // decoration: BoxDecoration(
+              //     image: DecorationImage(
+              //         fit: BoxFit.cover,
+              //         image: AssetImage('assets/images/sign.jpg'))),
             ),
             SizedBox(
               height: 20,
@@ -37,16 +72,23 @@ class _SignInScreenState extends State<SignInScreen> {
                       child: Container(
                           margin: EdgeInsets.only(right: 20, left: 10),
                           child: TextFormField(
+                              onSaved: (value) {
+                    user.email = value;
+                  },
                             decoration: InputDecoration(
-                              hintText: 'Username',
+                              hintText: 'Email',
+                              
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                     color: Color.fromRGBO(247, 102, 94, 1)),
                               ),
                             ),
                             validator: (String value) {
-                              if (value.length < 5) {
-                                return 'Username must be atleast 5 characters long';
+                              var emailValid = RegExp(
+                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                  .hasMatch(value);
+                              if (!emailValid) {
+                                return 'Email is not valid';
                               }
                             return null;
                             },
@@ -63,6 +105,9 @@ class _SignInScreenState extends State<SignInScreen> {
                       child: Container(
                           margin: EdgeInsets.only(right: 20, left: 10),
                           child: TextFormField(
+                              onSaved: (value) {
+                    user.password = value;
+                  },
                             obscureText: true,
                             decoration: InputDecoration(
                               hintText: 'Password',
@@ -92,7 +137,8 @@ class _SignInScreenState extends State<SignInScreen> {
                   height: 60,
                   child: RaisedButton(
                     onPressed: () {
-                      formkey.currentState.validate();
+                     bool valid = formkey.currentState.validate();
+                     valid?onSave(context):(){};
                     },
                     color: Color.fromRGBO(247, 102, 94, 1),
                     child: Text(
@@ -111,7 +157,7 @@ class _SignInScreenState extends State<SignInScreen> {
             ),
             InkWell(
               onTap: () {
-                Navigator.pushNamed(context, 'SignUp');
+                Navigator.pushNamed(context,SignUpScreen.routeName);
               },
               child: Center(
                 child: RichText(

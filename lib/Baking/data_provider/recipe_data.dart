@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
 
 class RecipeDataProvider{
-  final _baseUrl = 'http://192.168.1.9:8181';
+  final _baseUrl = 'http://192.168.1.6:8181';
   final http.Client httpClient;
 
   RecipeDataProvider({@required this.httpClient}) : assert(httpClient != null);

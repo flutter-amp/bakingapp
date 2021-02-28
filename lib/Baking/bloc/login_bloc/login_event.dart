@@ -1,3 +1,4 @@
+import 'package:baking_app/Baking/models/user.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
@@ -7,11 +8,11 @@ abstract class LoginEvent extends Equatable {
 }
 
 class LoginInWithEmailButtonPressed extends LoginEvent {
-  final String email;
-  final String password;
+  final User user;
 
-  LoginInWithEmailButtonPressed({@required this.email, @required this.password});
+
+  LoginInWithEmailButtonPressed({@required this.user});
 
   @override
-  List<Object> get props => [email, password];
+  List<Object> get props => [user];
 }

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class CommentDataProvider{
-  final _baseUrl = 'http://192.168.1.9:8181';
+  final _baseUrl = 'http://192.168.1.6:8181';
   final http.Client httpClient;
 
   CommentDataProvider({@required this.httpClient}) : assert(httpClient != null);
@@ -13,7 +13,6 @@ class CommentDataProvider{
   Future<List<Comment>> getComments(int rid) async{
      print(rid);
     final response = await httpClient.get('$_baseUrl/recipe/comments/$rid');
-    print('getttinggg commmeeentnnntsssss');
     if (response.statusCode == 200) {
       final comments = jsonDecode(response.body) as List;
       return comments.map((comment) => Comment.fromJson(comment)).toList();
@@ -39,7 +38,7 @@ class CommentDataProvider{
   
   Future<Comment> createComment(Comment comment) async {
     final response = await httpClient.post(
-      Uri.http('192.168.1.9:8181', '/comments/new'),
+      Uri.http('192.168.1.6:8181', '/comments/new'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
