@@ -7,8 +7,6 @@ import 'package:equatable/equatable.dart';
 abstract class CommentEvent extends Equatable{
   const CommentEvent();
 }
-
-
 class CommentCreate extends CommentEvent{
   final Comment comment;
 
