@@ -13,6 +13,7 @@ import 'package:baking_app/Baking/repository/user/user_repository.dart';
 import 'package:baking_app/Baking/view/screens/baking_route.dart';
 import 'package:baking_app/Baking/view/screens/recipe_screens/pastries_screen.dart';
 import 'package:baking_app/Baking/view/screens/user-screens/sign_in_screen.dart';
+import 'package:baking_app/tabsNavigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -136,7 +137,7 @@ class MyApp extends StatelessWidget {
           home:BlocBuilder<AuthenticationBloc,AuthenticationState>(builder: (_,state){
               if(state is AuthenticationAuthenticated){
                 print('authentic');
-                  return PastriesScreen();
+                  return TabsNavigation();
               }
               else{
                 print(state);
