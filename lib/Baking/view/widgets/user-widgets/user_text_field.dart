@@ -19,7 +19,6 @@ class UserTextField extends StatelessWidget {
           Text(label),
           TextField(
             obscureText: obscure,
-            
             cursorColor: Theme.of(context).accentColor,
             decoration: InputDecoration(
               focusColor: Theme.of(context).accentColor,

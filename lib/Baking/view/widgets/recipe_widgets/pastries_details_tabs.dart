@@ -63,7 +63,7 @@ class _PastriesDetailsTabsState extends State<PastriesDetailsTabs> {
                 ),
               ),
               Container(
-                height: 150,
+                height: 410,
                 child: TabBarView(
                   children: <Widget>[
                    
@@ -71,7 +71,7 @@ class _PastriesDetailsTabsState extends State<PastriesDetailsTabs> {
              IngredientsList(widget.recipe.id),
           //  Column(children:widget.recipe.steps.map((step) => Text(step)).toList()),
            StepsList(widget.recipe.id),
-             CommentScreen(), 
+            CommentScreen(recipe:widget.recipe), 
                   ])),
             ],
           ),

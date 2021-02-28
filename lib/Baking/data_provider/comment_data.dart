@@ -13,7 +13,6 @@ class CommentDataProvider{
   Future<List<Comment>> getComments(int rid) async{
      print(rid);
     final response = await httpClient.get('$_baseUrl/recipe/comments/$rid');
-    print('getttinggg commmeeentnnntsssss');
     if (response.statusCode == 200) {
       final comments = jsonDecode(response.body) as List;
       return comments.map((comment) => Comment.fromJson(comment)).toList();

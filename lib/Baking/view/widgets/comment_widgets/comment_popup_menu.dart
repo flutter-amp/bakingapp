@@ -18,6 +18,7 @@ class _CommentPopupMenuState extends State<CommentPopupMenu> {
 
   @override
   Widget build(BuildContext context) {
+  
     return PopupMenuButton(
         onSelected: (value) {
           switch (value) {
@@ -26,6 +27,7 @@ class _CommentPopupMenuState extends State<CommentPopupMenu> {
               _displayTextInputDialog(context);
               break;
             case 2:
+              FocusScope.of(context).requestFocus(new FocusNode());
               BlocProvider.of<CommentBloc>(context)
                   .add(CommentDelete(widget.comment));
               print('deleteee');
