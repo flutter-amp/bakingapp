@@ -1,3 +1,4 @@
+import 'package:baking_app/Baking/models/recipe_step.dart';
 import 'package:flutter/material.dart';
 import '../../../models/recipe.dart';
 class AddDirectionItem extends StatelessWidget {
@@ -16,15 +17,15 @@ class AddDirectionItem extends StatelessWidget {
             decoration: InputDecoration(labelText: 'Step $step'),
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.multiline,
-            initialValue:index!=-1?recipe.steps[index]:"",
+            initialValue:index!=-1?recipe.steps[index].direction:"",
             minLines: 2,
             maxLines: 5,
             onSaved: (value){
               if(index==-1){
-             recipe.steps.add(value);
+             recipe.steps.add(RecipeStep(id:1,direction:value));
               }
               else{
-                 recipe.steps[-1]=value;
+                 recipe.steps[index]=RecipeStep(id:1,direction:value);
               }
               print("value "+value);
               

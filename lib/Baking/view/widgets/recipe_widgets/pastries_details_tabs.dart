@@ -1,5 +1,6 @@
 import 'package:baking_app/Baking/models/recipe.dart';
 import 'package:baking_app/Baking/view/screens/comment_screens/comment_screen.dart';
+import 'package:baking_app/Baking/view/widgets/recipe_widgets/steps_list.dart';
 import 'package:flutter/material.dart';
 
 import './ingredients_list.dart';
@@ -16,6 +17,8 @@ class PastriesDetailsTabs extends StatefulWidget {
 class _PastriesDetailsTabsState extends State<PastriesDetailsTabs> {
   @override
   Widget build(BuildContext context) {
+    print("recipee");
+    print(widget.recipe);
     return SingleChildScrollView(
       child: Column(children: <Widget>[
         DefaultTabController(
@@ -63,10 +66,11 @@ class _PastriesDetailsTabsState extends State<PastriesDetailsTabs> {
                 height: 150,
                 child: TabBarView(
                   children: <Widget>[
-                    Text("indgrei"),
-                      Text("indgrei"),
-            //  IngredientsList(widget.recipe.ingredients),
+                   
+                      //Text("indgrei"),
+             IngredientsList(widget.recipe.id),
           //  Column(children:widget.recipe.steps.map((step) => Text(step)).toList()),
+           StepsList(widget.recipe.id),
              CommentScreen(), 
                   ])),
             ],

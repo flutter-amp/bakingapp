@@ -1,4 +1,5 @@
 import 'package:baking_app/Baking/models/recipe.dart';
+import 'package:baking_app/Baking/models/recipe_step.dart';
 import 'package:flutter/material.dart';
 import './add_direction.dart';
 
@@ -14,15 +15,23 @@ class AddDirections extends StatefulWidget {
 class _AddDirectionsState extends State<AddDirections> {
   @override
   List<Widget> list = new List();
+
   @override
   void initState() {
     super.initState();
-    if(widget.recipe.steps==null){
+    print("steps");
+    print(widget.recipe.steps);
+    if(widget.recipe.steps!=null){
+        for(int i=0;i<widget.recipe.steps.length;i++){
+          print("here");
+         list.add(AddDirectionItem(list.length+1,widget.recipe,i));
+    }
+    }else{
         list.add(AddDirectionItem(1,widget.recipe,-1));
     }
-      for(int i=0;i<widget.recipe.ingredients.length;i++){
-      list.add(AddDirectionItem(list.length+1,widget.recipe,i));
-    }
+    
+    
+    
   
   }
 

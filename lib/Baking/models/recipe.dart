@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:baking_app/Baking/models/recipe_step.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,9 @@ class Recipe extends Equatable {
    String imageurl;
    File image;
   List<Ingredient> ingredients;
-  List<String> steps;
+  List<RecipeStep> steps;
+
+
 
   Recipe(
       {this.id,@required this.title, @required this.servings, @required this.duration,this.imageurl,this.ingredients,this.steps,this.image});
@@ -29,16 +32,16 @@ class Recipe extends Equatable {
 // }
 
   factory Recipe.fromJson(Map<String, dynamic> json) {
-
     return Recipe(
       id: json['id'],
       title: json['title'],
       servings: json['servings'],
       duration: json['duration'],
+ 
     //  ingredients:List<Ingredient>.from(json["ingredients"].map((ingredient)=>ingredient))
     );
   }
-
+//.map((ingredient) => Ingredient.fromJson(ingredient))
   @override
-  String toString() => 'Recipe { id: $id, title: $title, servings: $servings, serving: $duration }';
+  String toString() => 'Recipe { id: $id, title: $title, servings: $servings, serving: $duration  }';
 }

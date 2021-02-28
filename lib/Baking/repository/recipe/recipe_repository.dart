@@ -19,7 +19,9 @@ Future<List<Recipe>> getRecipes() async {print('getttttttttttttttttttttt');
 
   }
 
-
+ Future<void> getRecipe(int id)async{
+     await dataProvider.getRecipe(id);
+  }
  
   
   Future<void> updateRecipe(Recipe recipe) async {

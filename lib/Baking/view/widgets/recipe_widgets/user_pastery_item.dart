@@ -45,7 +45,7 @@ class UserPasteryItem extends StatelessWidget {
                         width: 300,
                         padding:
                             EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                        child: Text('Blackberry Muffin',
+                        child: Text(recipe.title,
                             style: TextStyle(
                               fontSize: 26,
                               color: Colors.white,
@@ -62,7 +62,7 @@ class UserPasteryItem extends StatelessWidget {
                   children: <Widget>[
                     InkWell(
                       onTap: () {
-                        print("hereeeeeeeeeeee");
+                        print(recipe.ingredients);
                          Navigator.of(context).pushNamed(AddRecipeScreen.routeName,arguments:RecipeArgument(recipe: recipe,add:false ) );
                       },
                       child: Row(

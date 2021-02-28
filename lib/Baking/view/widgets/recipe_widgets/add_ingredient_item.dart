@@ -22,7 +22,8 @@ class _AddIngredientItemState extends State<AddIngredientItem> {
     dropdownValue = widget.index != -1
         ? widget.recipe.ingredients[widget.index].measurment
         : "Measurment";
-
+     name= widget.index != -1?widget.recipe.ingredients[widget.index].name:"";
+     quantity=widget.index != -1?widget.recipe.ingredients[widget.index].quantity:0;
     super.initState();
   }
 
@@ -41,7 +42,7 @@ class _AddIngredientItemState extends State<AddIngredientItem> {
               Expanded(
                 child: Container(
                   child: TextFormField(
-                    key: Key(name),
+                
                     decoration: InputDecoration(labelText: 'Name'),
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.text,
@@ -91,7 +92,7 @@ class _AddIngredientItemState extends State<AddIngredientItem> {
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.number,
                       initialValue: widget.index != -1
-                          ? widget.recipe.ingredients[widget.index].quantity
+                          ? "${widget.recipe.ingredients[widget.index].quantity}"
                           : "0",
                       onChanged: (value) {
                         try {

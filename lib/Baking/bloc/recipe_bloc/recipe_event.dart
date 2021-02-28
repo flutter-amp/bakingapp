@@ -21,6 +21,13 @@ class RecipeRetrieve extends RecipeEvent{
   @override
 List<Object> get props => [];
 }
+class RecipeImageRetrieve extends RecipeEvent{
+
+  const RecipeImageRetrieve();
+
+  @override
+List<Object> get props => [];
+}
 class RecipeUpdate extends RecipeEvent{
   final Recipe recipe;
   const RecipeUpdate(this.recipe);

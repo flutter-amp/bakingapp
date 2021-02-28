@@ -17,14 +17,17 @@ List<Recipe> time = [];
   Stream<RecipeState> mapEventToState(RecipeEvent event) async* {
 
     if (event is RecipeCreate) {
-
+      yield RecipeInProgress();
       try {
         await recipeRepository.createRecipe(event.recipe);
-        
+       
        final recipe = await recipeRepository.getRecipes();
+       print("checkkkkkkkkkkkkkkkkkkkkkkk");
         yield RecipeSuccessfull(recipe);
+           print("kjjjjjjjjjjjjjjjjjjjj");
       } catch (e) {
-             print(e);
+        print("hhhhhhhhhhhhhhhhhhh");
+            
         yield RecipeFailure();
       }
     }
@@ -33,10 +36,43 @@ List<Recipe> time = [];
       yield RecipeInProgress();
        try {
        final recipes = await recipeRepository.getRecipes();
+        print("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
         yield RecipeSuccessfull(recipes);
+         print("vvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
       } catch ( error) {
         
-        print(error);
+        print("my errorrrrrrrrrrrrrrrrrrrrrrrrrrr" );
+        yield RecipeFailure();
+      }
+    }
+    if(event is RecipeImageRetrieve){
+            yield RecipeInProgress();
+       try {
+      // final image = await recipeRepository.getRecipe();
+        print("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+        final recipes = await recipeRepository.getRecipes();
+        print("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+        yield RecipeSuccessfull(recipes);
+    
+         print("vvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+      } catch ( error) {
+        
+        print("my errorrrrrrrrrrrrrrrrrrrrrrrrrrr" );
+        yield RecipeFailure();
+      }
+    }
+       if( event is RecipeUpdate){
+      print('heeeeeeeeeeeeeeeeeeeeeeeeeee');
+      yield RecipeInProgress();
+       try {
+       await recipeRepository..updateRecipe(event.recipe);
+        final recipes = await recipeRepository.getRecipes();
+        print("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+        yield RecipeSuccessfull(recipes);
+         print("vvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+      } catch ( error) {
+        
+        print("my errorrrrrrrrrrrrrrrrrrrrrrrrrrr" );
         yield RecipeFailure();
       }
     }

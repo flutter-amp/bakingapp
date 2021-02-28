@@ -14,7 +14,7 @@ class Ingredient extends Equatable{
   factory Ingredient.fromJson(Map<String, dynamic> json) {
     return Ingredient(
       id: json['id'],
-      name: json['name'],
+      name: json['title'],
       quantity: json['quantity'],
       measurment: json['measurment'],
     );
