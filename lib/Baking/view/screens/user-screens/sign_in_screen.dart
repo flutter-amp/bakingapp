@@ -39,6 +39,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
  void onSave(BuildContext context ){
     formkey.currentState.save();
+    print('calling');
     BlocProvider.of<LoginBloc>(context).add(LoginInWithEmailButtonPressed(user:user));
 
      
@@ -51,15 +52,17 @@ class _SignInScreenState extends State<SignInScreen> {
       backgroundColor: Colors.white,
       body: Form(
         key: formkey,
-        child: ListView(
+        child: Column(
           children: <Widget>[
             Container(
-              height: 300,
+              height: 200,
               // decoration: BoxDecoration(
               //     image: DecorationImage(
               //         fit: BoxFit.cover,
               //         image: AssetImage('assets/images/sign.jpg'))),
             ),
+              Text('Sign In',
+                  style: Theme.of(context).textTheme.headline4),
             SizedBox(
               height: 20,
             ),
@@ -132,12 +135,14 @@ class _SignInScreenState extends State<SignInScreen> {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(5),
+                borderRadius: BorderRadius.circular(25),
                 child: Container(
                   height: 60,
+                  width: double.infinity,
                   child: RaisedButton(
                     onPressed: () {
                      bool valid = formkey.currentState.validate();
+                     print(valid);
                      valid?onSave(context):(){};
                     },
                     color: Color.fromRGBO(247, 102, 94, 1),

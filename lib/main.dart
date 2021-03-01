@@ -166,10 +166,6 @@ final StepRepository stepRepository;
                      BlocProvider(
               create: (context) =>
                   StepBloc(stepRepository: this.stepRepository)),
-                   BlocProvider(
-              create: (context) =>
-                  
-                  CommentBloc(commentRepository: this.commentRepository)),
 
                   
             //  BlocProvider(

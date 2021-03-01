@@ -1,6 +1,7 @@
 import 'package:baking_app/Baking/bloc/authentication_boc/authentication_bloc.dart';
 import 'package:baking_app/Baking/bloc/user_bloc/user_bloc.dart';
 import 'package:baking_app/Baking/bloc/user_bloc/user_event.dart';
+import 'package:baking_app/Baking/bloc/user_bloc/user_state.dart';
 import 'package:baking_app/Baking/models/user.dart';
 import 'package:baking_app/Baking/repository/authentication/authentication_repository.dart';
 import 'package:baking_app/Baking/repository/user/user_repository.dart';
@@ -46,7 +47,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
     print(user.username);
     formkey.currentState.save();
     BlocProvider.of<UserBloc>(context).add(UserCreate(user));
+           Navigator.pop(context);
 
+    
      
      
   }
@@ -61,8 +64,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
       backgroundColor: Colors.white,
       body: Form(
         key: formkey,
-        child: ListView(
+        child: Column(
           children: <Widget>[
+            Container(
+              height: 180,
+              // decoration: BoxDecoration(
+              //     image: DecorationImage(
+              //         fit: BoxFit.cover,
+              //         image: AssetImage('assets/images/sign.jpg'))),
+            ),
+              Text('Sign Up',
+                  style: Theme.of(context).textTheme.headline4),
             // BackButtonWidget(),
             SizedBox(
               height: 20,
@@ -188,8 +200,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(5),
+                borderRadius: BorderRadius.circular(25),
                 child: Container(
+                  width:double.infinity,
                   height: 60,
                   child: RaisedButton(
                     onPressed: () {
@@ -209,11 +222,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
             ),
-            FlatButton(
-              child:Text('Log in'),
-              onPressed: (){
+            InkWell(
+              onTap: () {
                 Navigator.pop(context);
               },
+              child: Center(
+                child: RichText(
+                  text: TextSpan(
+                      text: 'Already have an account?',
+                      style: TextStyle(color: Colors.black),
+                      children: [
+                        TextSpan(
+                          text: 'SIGN IN',
+                          style: TextStyle(
+                              color: Color.fromRGBO(247, 102, 94, 1),
+                              fontWeight: FontWeight.bold),
+                        )
+                      ]),
+                ),
+              ),
             )
           ],
         ),

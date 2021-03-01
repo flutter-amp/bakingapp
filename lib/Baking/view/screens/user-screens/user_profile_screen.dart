@@ -63,6 +63,38 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
         if(state is AuthenticationAuthenticated){
           user.id=state.user.id;
             return Scaffold(
+              appBar: AppBar(backgroundColor:Color.fromRGBO(10, 56, 92, 1),actions: [ PopupMenuButton(
+        onSelected: (value) {
+          switch (value) {
+            case 1:
+              BlocProvider.of<AuthenticationBloc>(context).add(UserLoggedOut());
+  
+              break;
+            case 2:
+            BlocProvider.of<UserBloc>(context).add(UserDelete(state.user));
+             
+              print('deleteee');
+              break;
+            default:
+              break;
+          }
+        },
+        itemBuilder: (context) => [
+              PopupMenuItem(
+                  value: 1,
+                  child: Row(
+                    children: <Widget>[
+                      Text('Log out')
+                    ],
+                  )),
+              PopupMenuItem(
+                  value: 2,
+                  child: Row(
+                    children: <Widget>[
+                      Text('Delete Acc')
+                    ],
+                  )),
+            ])],),
       backgroundColor: Colors.white,
       body: Form(
         key: formkey,
@@ -73,30 +105,30 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
               height: 120,
             ),
 
-             FlatButton(
-                height: 50,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
-                    side: BorderSide(color: Colors.red)),
-                onPressed: () {
-                  BlocProvider.of<UserBloc>(context).add(UserDelete(state.user));
-                },
-                //color: Theme.of(context).accentColor,
-                textColor: Theme.of(context).accentColor,
-                child: Text('Delete acc')),
-                        FlatButton(
-                height: 50,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
-                    side: BorderSide(color: Colors.red)),
-                onPressed: () {
-                  BlocProvider.of<AuthenticationBloc>(context).add(UserLoggedOut());
-                },
-                //color: Theme.of(context).accentColor,
-                textColor: Theme.of(context).accentColor,
-                child: Text('Log Out')),
+            //  FlatButton(
+            //     height: 50,
+            //     shape: RoundedRectangleBorder(
+            //         borderRadius: BorderRadius.circular(25),
+            //         side: BorderSide(color: Colors.red)),
+            //     onPressed: () {
+            //       BlocProvider.of<UserBloc>(context).add(UserDelete(state.user));
+            //     },
+            //     //color: Theme.of(context).accentColor,
+            //     textColor: Theme.of(context).accentColor,
+            //     child: Text('Delete acc')),
+                //         FlatButton(
+                // height: 50,
+                // shape: RoundedRectangleBorder(
+                //     borderRadius: BorderRadius.circular(25),
+                //     side: BorderSide(color: Colors.red)),
+                // onPressed: () {
+                //   BlocProvider.of<AuthenticationBloc>(context).add(UserLoggedOut());
+                // },
+                // //color: Theme.of(context).accentColor,
+                // textColor: Theme.of(context).accentColor,
+                // child: Text('Log Out')),
 
-            Text('Hey! ${user.username}',
+            Text('Hey! ${state.user.username}',
                   style: Theme.of(context).textTheme.headline4),
             Padding(
               padding: const EdgeInsets.all(10.0),
@@ -221,7 +253,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(5),
+                borderRadius: BorderRadius.circular(35),
                 child: Container(
                   height: 60,
                   child: RaisedButton(
@@ -235,7 +267,6 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       'Submit Changes',
                       style: TextStyle(
                           color: Colors.white,
-                          fontWeight: FontWeight.bold,
                           fontSize: 20),
                     ),
                   ),

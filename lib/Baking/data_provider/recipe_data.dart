@@ -12,7 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../shared_preferences.dart';
 
 class RecipeDataProvider{
-  final _baseUrl = 'http://192.168.137.1:8181';
+  final _baseUrl = 'http://192.168.1.6:8181';
   final http.Client httpClient;
   RecipeDataProvider({@required this.httpClient}) : assert(httpClient != null);
 
@@ -98,7 +98,7 @@ class RecipeDataProvider{
     print("my file"+recipe.image.toString());
     final response = await httpClient.post(
 
-      Uri.http('192.168.137.1:8181', '/recipes/new'),
+      Uri.http('192.168.1.6:8181', '/recipes/new'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -154,7 +154,7 @@ class RecipeDataProvider{
     });
     dio.options.headers["id"] = recipeId;
     
-    var response = await dio.post("http://192.168.137.1:8181/recipes/newImage/${recipeId}", data: formData,queryParameters:{"id":recipeId});
+    var response = await dio.post("http://192.168.1.6:8181/recipes/newImage/${recipeId}", data: formData,queryParameters:{"id":recipeId});
     print("rsponnnnnnnnnnnnnnnnnn");
     
 
