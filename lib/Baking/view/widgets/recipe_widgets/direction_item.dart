@@ -7,7 +7,7 @@ class DirectionItem extends StatelessWidget {
   final RecipeStep step;
   final int index;
 
-  const DirectionItem({Key key, this.step,this.index}) : super(key: key);
+  const DirectionItem(this.step,this.index);
 
   
   @override

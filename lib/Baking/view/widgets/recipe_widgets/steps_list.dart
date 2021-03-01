@@ -2,6 +2,7 @@
 import 'package:baking_app/Baking/bloc/recipe_state/step.state.dart';
 import 'package:baking_app/Baking/bloc/recipe_state/step_bloc.dart';
 import 'package:baking_app/Baking/bloc/recipe_state/step_event.dart';
+import 'package:baking_app/Baking/view/widgets/recipe_widgets/direction_item.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,14 +20,14 @@ class StepsList extends StatelessWidget {
         return Text('Not Working');
       } else if (state is StepSuccessfull) {
         print('commnetsssss commming');
-        final ingredients = state.steps.toList();
-        print("length ${ingredients.length}");
+        final steps = state.steps.toList();
+        print("length ${steps.length}");
       return ListView.builder(itemBuilder: (contex,i){
-       return Text(ingredients[i].direction);
+       return DirectionItem(steps[i],i+1);
 
              
       },
-      itemCount: ingredients.length,);
+      itemCount: steps.length,);
       }
       return Center(child:CircularProgressIndicator());
   }
