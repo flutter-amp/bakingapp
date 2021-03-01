@@ -50,137 +50,139 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Form(
-        key: formkey,
-        child: Column(
-          children: <Widget>[
-            Container(
-              height: 200,
-              // decoration: BoxDecoration(
-              //     image: DecorationImage(
-              //         fit: BoxFit.cover,
-              //         image: AssetImage('assets/images/sign.jpg'))),
-            ),
-              Text('Sign In',
-                  style: Theme.of(context).textTheme.headline4),
-            SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Row(
-                children: <Widget>[
-                  IconButton(icon: Icon(Icons.person), onPressed: null),
-                  Expanded(
-                      child: Container(
-                          margin: EdgeInsets.only(right: 20, left: 10),
-                          child: TextFormField(
-                              onSaved: (value) {
-                    user.email = value;
-                  },
-                            decoration: InputDecoration(
-                              hintText: 'Email',
-                              
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Color.fromRGBO(247, 102, 94, 1)),
-                              ),
-                            ),
-                            validator: (String value) {
-                              var emailValid = RegExp(
-                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                  .hasMatch(value);
-                              if (!emailValid) {
-                                return 'Email is not valid';
-                              }
-                            return null;
-                            },
-                          )))
-                ],
+      body: SingleChildScrollView(
+              child: Form(
+          key: formkey,
+          child: Column(
+            children: <Widget>[
+              Container(
+                height: 200,
+                // decoration: BoxDecoration(
+                //     image: DecorationImage(
+                //         fit: BoxFit.cover,
+                //         image: AssetImage('assets/images/sign.jpg'))),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Row(
-                children: <Widget>[
-                  IconButton(icon: Icon(Icons.lock), onPressed: null),
-                  Expanded(
-                      child: Container(
-                          margin: EdgeInsets.only(right: 20, left: 10),
-                          child: TextFormField(
-                              onSaved: (value) {
-                    user.password = value;
-                  },
-                            obscureText: true,
-                            decoration: InputDecoration(
-                              hintText: 'Password',
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Color.fromRGBO(247, 102, 94, 1)),
-                              ),
-                            ),
-                            validator: (String value) {
-                              if (value.length < 5) {
-                                return 'Password must be atleast 5 characters long';
-                              }
-                            return null;
-                            },
-                          ))),
-                ],
+                Text('Sign In',
+                    style: Theme.of(context).textTheme.headline4),
+              SizedBox(
+                height: 20,
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(25),
-                child: Container(
-                  height: 60,
-                  width: double.infinity,
-                  child: RaisedButton(
-                    onPressed: () {
-                     bool valid = formkey.currentState.validate();
-                     print(valid);
-                     valid?onSave(context):(){};
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Row(
+                  children: <Widget>[
+                    IconButton(icon: Icon(Icons.person), onPressed: null),
+                    Expanded(
+                        child: Container(
+                            margin: EdgeInsets.only(right: 20, left: 10),
+                            child: TextFormField(
+                                onSaved: (value) {
+                      user.email = value;
                     },
-                    color: Color.fromRGBO(247, 102, 94, 1),
-                    child: Text(
-                      'SIGN IN',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20),
+                              decoration: InputDecoration(
+                                hintText: 'Email',
+                                
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Color.fromRGBO(247, 102, 94, 1)),
+                                ),
+                              ),
+                              validator: (String value) {
+                                var emailValid = RegExp(
+                                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                    .hasMatch(value);
+                                if (!emailValid) {
+                                  return 'Email is not valid';
+                                }
+                              return null;
+                              },
+                            )))
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Row(
+                  children: <Widget>[
+                    IconButton(icon: Icon(Icons.lock), onPressed: null),
+                    Expanded(
+                        child: Container(
+                            margin: EdgeInsets.only(right: 20, left: 10),
+                            child: TextFormField(
+                                onSaved: (value) {
+                      user.password = value;
+                    },
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                hintText: 'Password',
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Color.fromRGBO(247, 102, 94, 1)),
+                                ),
+                              ),
+                              validator: (String value) {
+                                if (value.length < 5) {
+                                  return 'Password must be atleast 5 characters long';
+                                }
+                              return null;
+                              },
+                            ))),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(25),
+                  child: Container(
+                    height: 60,
+                    width: double.infinity,
+                    child: RaisedButton(
+                      onPressed: () {
+                       bool valid = formkey.currentState.validate();
+                       print(valid);
+                       valid?onSave(context):(){};
+                      },
+                      color: Color.fromRGBO(247, 102, 94, 1),
+                      child: Text(
+                        'SIGN IN',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            InkWell(
-              onTap: () {
-                Navigator.pushNamed(context,SignUpScreen.routeName);
-              },
-              child: Center(
-                child: RichText(
-                  text: TextSpan(
-                      text: 'Don\'t have an account?',
-                      style: TextStyle(color: Colors.black),
-                      children: [
-                        TextSpan(
-                          text: 'SIGN UP',
-                          style: TextStyle(
-                              color: Color.fromRGBO(247, 102, 94, 1),
-                              fontWeight: FontWeight.bold),
-                        )
-                      ]),
-                ),
+              SizedBox(
+                height: 20,
               ),
-            )
-          ],
+              InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context,SignUpScreen.routeName);
+                },
+                child: Center(
+                  child: RichText(
+                    text: TextSpan(
+                        text: 'Don\'t have an account?',
+                        style: TextStyle(color: Colors.black),
+                        children: [
+                          TextSpan(
+                            text: 'SIGN UP',
+                            style: TextStyle(
+                                color: Color.fromRGBO(247, 102, 94, 1),
+                                fontWeight: FontWeight.bold),
+                          )
+                        ]),
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
