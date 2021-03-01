@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../shared_preferences.dart';
 
 class AuthenticationDataProvider{
-  final _baseUrl = 'http://192.168.1.6:8181';
+  final _baseUrl = 'http://192.168.137.1:8181';
   final http.Client httpClient;
 
   AuthenticationDataProvider({@required this.httpClient}) : assert(httpClient != null);
@@ -18,7 +18,7 @@ class AuthenticationDataProvider{
 
   Future<String> signInWithEmailAndPassword(User user) async{
        final response = await httpClient.post(
-      Uri.http('192.168.1.6:8181', '/login'),
+      Uri.http('192.168.137.1:8181', '/login'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

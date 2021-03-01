@@ -5,14 +5,15 @@ import 'package:http/http.dart' as http;
 
 class UserDataProvider{
 
-final _baseUrl = 'http://192.168.1.6:8181';
+final _baseUrl = 'http://192.168.137.1:8181';
   final http.Client httpClient;
 
   UserDataProvider({@required this.httpClient}) : assert(httpClient != null);
   
-  Future<User> createUser(User user) async {
+  Future<void> createUser(User user) async {
     final response = await httpClient.post(
-      Uri.http('192.168.1.6:8181', '/signup'),
+
+      Uri.http('192.168.137.1:8181', '/signup'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

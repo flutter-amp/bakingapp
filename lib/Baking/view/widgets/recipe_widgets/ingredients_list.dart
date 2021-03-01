@@ -1,19 +1,36 @@
-import 'package:baking_app/Baking/models/ingredient.dart';
+import 'package:baking_app/Baking/bloc/ingredient_bloc/ingredient.state.dart';
+import 'package:baking_app/Baking/bloc/ingredient_bloc/ingredient_bloc.dart';
+import 'package:baking_app/Baking/bloc/ingredient_bloc/ingredient_event.dart';
 import "package:flutter/material.dart";
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import './ingredients_items.dart';
 
 class IngredientsList extends StatelessWidget {
-  final List<Ingredient> ingredients;
+  final int id;
 
-  const IngredientsList(this.ingredients);
+  const IngredientsList(this.id);
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-          children: ingredients
-              .map((ingredient) => IngredientItem(key:Key(ingredient.id.toString()),ingredient:ingredient))
-              .toList()),
-    );
+    BlocProvider.of<IngredientBloc>(context).add(IngredientsRetrieve(id));
+    return BlocBuilder<IngredientBloc, IngredientState>(builder: (_, state) {
+       if (state is IngredientFailure) {
+        return Text('Not Working');
+      } else if (state is IngredientSuccessfull) {
+        print('commnetsssss commming');
+        final ingredients = state.ingredients.toList();
+        print("length ${ingredients.length}");
+      return ListView.builder(itemBuilder: (contex,i){
+       return IngredientItem(key:Key(ingredients[i].id.toString()),ingredient:ingredients[i]);
+
+             
+      },
+      itemCount: ingredients.length,);
+      }
+      return Center(child:CircularProgressIndicator());
   }
+    
+  )
+  ;
+}
 }

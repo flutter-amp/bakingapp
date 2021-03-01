@@ -23,7 +23,9 @@ class _AddIngredientsState extends State<AddIngredients> {
       list.add(AddIngredientItem(widget.recipe,i));
     }
     }
+    else{
     list.add(AddIngredientItem(widget.recipe,-1));
+    }
   }
 
 

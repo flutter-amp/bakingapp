@@ -25,7 +25,9 @@ class UserBloc extends Bloc<UserEvent,UserState>{
         await userRepository.createUser(event.user);
         //final comments = await commentRepository.getComments(event.comment.recipeid);
         yield UserSuccessfull();
-      } catch (_) {
+      } catch (e) {
+        print(e);
+        print("hhhhhhht");
         yield UserFailure();
       }
 

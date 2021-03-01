@@ -10,9 +10,10 @@ RecipeState();
 
 class RecipeSuccessfull extends RecipeState{
   final List<Recipe> recipes;
-  RecipeSuccessfull([this.recipes=const []]);
+  final List<Recipe> userRecipes;
+  RecipeSuccessfull([this.recipes=const [],this.userRecipes=const []]);
     @override
-  List<Object> get props => [recipes];
+  List<Object> get props => [recipes,userRecipes];
 }
 class RecipeInProgress extends RecipeState{
     
