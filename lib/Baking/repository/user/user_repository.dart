@@ -17,11 +17,11 @@ class UserRepository{
   
   Future<void> updateUser(User comment) async {
     
-   // await dataProvider.updateUser(comment);
+    await dataProvider.updateUser(comment);
   }
 
   Future<void> deleteUser(int id) async {
-   // await dataProvider.deleteUser(id);
+    await dataProvider.deleteUser(id);
   }
 
 

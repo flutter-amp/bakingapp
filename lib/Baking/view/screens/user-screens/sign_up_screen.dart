@@ -1,9 +1,30 @@
+import 'package:baking_app/Baking/bloc/authentication_boc/authentication_bloc.dart';
 import 'package:baking_app/Baking/bloc/user_bloc/user_bloc.dart';
 import 'package:baking_app/Baking/bloc/user_bloc/user_event.dart';
 import 'package:baking_app/Baking/models/user.dart';
+import 'package:baking_app/Baking/repository/authentication/authentication_repository.dart';
+import 'package:baking_app/Baking/repository/user/user_repository.dart';
 import 'package:baking_app/Baking/view/screens/user-screens/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+
+class SignupWrapped extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final authService = RepositoryProvider.of<AuthenticationRepository>(context);
+    final userRepository = RepositoryProvider.of<UserRepository>(context);
+    final authBloc = BlocProvider.of<AuthenticationBloc>(context);
+    return Container(
+      alignment: Alignment.center,
+      child: BlocProvider<UserBloc>(
+        create: (context) => UserBloc(userRepository: userRepository,authenticationBloc:authBloc ,authenticationRepository:authService ),
+        child: SignUpScreen(),
+      ),
+    );
+  }
+}
+
 
 class SignUpScreen extends StatefulWidget {
     static String routeName = '/signup';
