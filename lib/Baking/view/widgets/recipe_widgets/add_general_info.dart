@@ -22,25 +22,25 @@ class _AddGeneralInfoState extends State<AddGeneralInfo> {
 
   File _image;
   final picker = ImagePicker();
-  Future getImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+  // Future getImage() async {
+  //   final pickedFile = await picker.getImage(source: ImageSource.gallery);
 
-    setState(() {
-      if (pickedFile != null) {
-      print("jump");
-        widget.recipe.imageurl =pickedFile.path;
-        print("path "+pickedFile.path);
-        print("jump");
-        _image=File(pickedFile.path);
-        widget.recipe.image =File(pickedFile.path);
-        print("jump");
-          widget.file=_image;
-      } else {
-        print('No image selected.');
+  //   setState(() {
+  //     if (pickedFile != null) {
+  //     print("jump");
+  //       widget.recipe.imageurl =pickedFile.path;
+  //       print("path "+pickedFile.path);
+  //       print("jump");
+  //       _image=File(pickedFile.path);
+  //       widget.recipe.image =File(pickedFile.path);
+  //       print("jump");
+  //         widget.file=_image;
+  //     } else {
+  //       print('No image selected.');
 
-      }
-    });
-  }
+  //     }
+  //   });
+  // }
  
 
   @override
@@ -89,21 +89,21 @@ class _AddGeneralInfoState extends State<AddGeneralInfo> {
           ),
           SizedBox(height:10),
           Row(children: <Widget>[
-            Container(
-              width: 200,
-              height: 150,
-              margin: EdgeInsets.only(top: 8, right: 10),
-              decoration: BoxDecoration(
-                border: Border.all(width: 1, color: Colors.grey),
-              ),
-              child: _image==null
-                  ? Icon(Icons.camera_alt_outlined,size: 150.0,)
-                  : FittedBox(
-                      child: Image.file(_image),
-                      fit: BoxFit.cover,
-                    ),
-            ),
-            TextButton(onPressed: getImage, child: Text("Choose")),
+            // Container(
+            //   width: 200,
+            //   height: 150,
+            //   margin: EdgeInsets.only(top: 8, right: 10),
+            //   decoration: BoxDecoration(
+            //     border: Border.all(width: 1, color: Colors.grey),
+            //   ),
+            //   child: _image==null
+            //       ? Icon(Icons.camera_alt_outlined,size: 150.0,)
+            //       : FittedBox(
+            //           child: Image.file(_image),
+            //           fit: BoxFit.cover,
+            //         ),
+            // ),
+           // TextButton(onPressed: getImage, child: Text("Choose")),
           ])
         ],
       ),
