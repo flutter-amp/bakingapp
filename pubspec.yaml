@@ -26,6 +26,7 @@ dependencies:
   flutter_statusbarcolor: ^0.2.3  
   http: ^0.12.2
   jwt_decode: ^0.2.0
+  shared_preferences: ^0.5.10
   equatable: ^1.2.6
   flutter_bloc: ^6.1.2
   dropdown_formfield: ^0.1.3

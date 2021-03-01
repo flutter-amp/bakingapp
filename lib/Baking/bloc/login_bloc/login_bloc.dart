@@ -2,6 +2,7 @@ import 'package:baking_app/Baking/bloc/authentication_boc/authentication_bloc.da
 import 'package:baking_app/Baking/bloc/authentication_boc/authentication_event.dart';
 import 'package:baking_app/Baking/repository/authentication/authentication_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'login_event.dart';
 import 'login_state.dart';
@@ -24,12 +25,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     }
   }
 
+
+
   Stream<LoginState> _mapLoginWithEmailToState(LoginInWithEmailButtonPressed event) async* {
     yield LoginLoading();
     print('Nth very weird just happened');
     try {
       final token = await _authenticationRepository.signInWithEmailAndPassword(event.user);
-        print(token);
       final user = await _authenticationRepository.getUser(int.parse(token));
         if (user != null) {
          print('userEmail');
