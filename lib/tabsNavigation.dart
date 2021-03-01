@@ -1,6 +1,9 @@
 import 'package:baking_app/Baking/view/screens/user-screens/user_profile_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'Baking/bloc/recipe_bloc/recipe_bloc.dart';
+import 'Baking/bloc/recipe_bloc/recipe_event.dart';
 import 'Baking/view/screens/recipe_screens/pastries_screen.dart';
 import 'Baking/view/screens/recipe_screens/user_pastries_screen.dart';
 
@@ -24,6 +27,9 @@ class _TabsNavigationState extends State<TabsNavigation> {
   ];
 
   void _onItemTapped(int index) {
+    if(index==1){
+       BlocProvider.of<RecipeBloc>(context,listen: false).add(RecipeRetrieve());
+    }
     setState(() {
       _selectedIndex = index;
     });

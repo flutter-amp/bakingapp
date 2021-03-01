@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:baking_app/Baking/bloc/authentication_boc/authentication_bloc.dart';
+import 'package:baking_app/Baking/bloc/authentication_boc/authentication_state.dart';
 import 'package:baking_app/Baking/bloc/ingredient_bloc/ingredient.state.dart';
 import 'package:baking_app/Baking/bloc/ingredient_bloc/ingredient_bloc.dart';
 import 'package:baking_app/Baking/bloc/ingredient_bloc/ingredient_event.dart';
@@ -33,12 +35,12 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
   final _priceFocusNode = FocusNode();
   final _descriptionFocusNode = FocusNode();
   final _form = GlobalKey<FormState>();
-  var _recipe;
+  Recipe _recipe;
 
   @override
   void initState() {
     // TODO: implement initState
-    _recipe = widget.args.add
+    Recipe _recipe = widget.args.add
         ? Recipe(
             title: null,
             servings: 0,
@@ -64,26 +66,48 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
     _form.currentState.save();
     print("again again");
     print(_recipe.title);
-    //  print(_recipe.steps[0]);
-    //  print("name 3 "+_recipe.ingredients[0].name);
-    //  BlocProvider.of<RecipeBloc>(context).add(RecipeCreate(_recipe));
-    //   _form.currentState.save();
-    // print(_recipe.name);
-    // print(_recipe.steps[0]);
     if (widget.args.add) {
       BlocProvider.of<RecipeBloc>(context).add(RecipeCreate(_recipe, _file));
-      _recipe = {};
+     // _recipe = Recipe(title: '',duration: '',servings: 0,imageurl: '');
     } else {
       BlocProvider.of<RecipeBloc>(context).add(RecipeUpdate(_recipe));
     }
   }
 
+
+
+
+ 
+
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
+    _recipe = widget.args.add
+        ? Recipe(
+            title: null,
+            servings: 0,
+            duration: null,
+            ingredients: List<Ingredient>(),
+            userID: 0,
+            steps: List<RecipeStep>(),
+            imageurl: null)
+        : widget.args.recipe;
+    if(!widget.args.add){
       BlocProvider.of<IngredientBloc>(context).add(IngredientsRetrieve(_recipe.id));
             BlocProvider.of<StepBloc>(context).add(StepsRetrieve(_recipe.id));
+    }
     final bool add = widget.args.add;
-    return Scaffold(
+     return BlocBuilder<AuthenticationBloc, AuthenticationState>(
+        builder: (context, state) {
+          if(state is AuthenticationAuthenticated){
+            print("my reciooo");
+            print(_recipe);
+             _recipe.userID=state.user.id;
+               return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
           color: Colors.black, //change your color here
@@ -128,7 +152,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
               SizedBox(height: 20),
             
                widget.args.add
-                  ? AddIngredients(_recipe)
+                  ? AddDirections(_recipe)
                   : BlocBuilder<StepBloc, RecipeStepState>(
                       builder: (_, state) {
                       if (state is StepSuccessfull) {
@@ -145,6 +169,8 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
               ),
               RaisedButton(
                 onPressed: () {
+                  print(state.user);
+               
                   onSave(context);
                 },
                 child: Row(children: [
@@ -162,5 +188,12 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
         ),
       ),
     );
+
+          }
+          else{
+            return Text('Not Auth');
+          }
+     
+    });
   }
 }

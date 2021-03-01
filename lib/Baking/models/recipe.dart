@@ -14,18 +14,19 @@ class Recipe extends Equatable {
    String duration;
    String imageurl;
    File image;
+   int userID;
   List<Ingredient> ingredients;
   List<RecipeStep> steps;
 
 
 
   Recipe(
-      {this.id,@required this.title, @required this.servings, @required this.duration,this.imageurl,this.ingredients,this.steps,this.image});
+      {this.id,@required this.title, @required this.servings,this.imageurl, @required this.duration,this.userID,this.ingredients,this.steps,this.image});
 
 
   @override
   // TODO: implement props
-  List<Object> get props => [id,title,servings,duration];
+  List<Object> get props => [id,title,servings,duration,userID];
 //  List<Map> toJson(){
 //     List<Map> ingredient=this.ingredients!=null? this.ingredients.map((ing) =>jsonEncode(ing));
 //     return ingredient;
@@ -37,11 +38,12 @@ class Recipe extends Equatable {
       title: json['title'],
       servings: json['servings'],
       duration: json['duration'],
+      userID: json['recipeuserid']
  
     //  ingredients:List<Ingredient>.from(json["ingredients"].map((ingredient)=>ingredient))
     );
   }
 //.map((ingredient) => Ingredient.fromJson(ingredient))
   @override
-  String toString() => 'Recipe { id: $id, title: $title, servings: $servings, serving: $duration  }';
+  String toString() => 'Recipe { id: $id, title: $title, servings: $servings, serving: $duration ,userid:$userID }';
 }

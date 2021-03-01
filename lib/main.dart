@@ -3,16 +3,19 @@ import 'package:baking_app/Baking/bloc/authentication_boc/authentication_state.d
 import 'package:baking_app/Baking/bloc/comment_bloc/comment_bloc.dart';
 import 'package:baking_app/Baking/bloc/recipe_bloc/recipe_bloc.dart';
 import 'package:baking_app/Baking/bloc/recipe_state/step_bloc.dart';
+import 'package:baking_app/Baking/bloc/user_recipes/user_recipes_bloc.dart';
 import 'package:baking_app/Baking/data_provider/authentication_data.dart';
 import 'package:baking_app/Baking/data_provider/comment_data.dart';
 import 'package:baking_app/Baking/data_provider/recipe_data.dart';
 import 'package:baking_app/Baking/data_provider/step_date_provider.dart';
 import 'package:baking_app/Baking/data_provider/user_data.dart';
+import 'package:baking_app/Baking/data_provider/user_recipe_data.dart';
 import 'package:baking_app/Baking/repository/comment/comment_repository.dart';
 import 'package:baking_app/Baking/repository/ingredient/ingredient_repository.dart';
 import 'package:baking_app/Baking/repository/recipe/recipe_repository.dart';
 import 'package:baking_app/Baking/repository/recipe_state/step_repository.dart';
 import 'package:baking_app/Baking/repository/user/user_repository.dart';
+import 'package:baking_app/Baking/repository/user_recipe_repository.dart/user_recipe_repository.dart';
 import 'package:baking_app/Baking/view/screens/baking_route.dart';
 import 'package:baking_app/Baking/view/screens/user-screens/sign_in_screen.dart';
 import 'package:baking_app/tabsNavigation.dart';
@@ -48,7 +51,11 @@ final AuthenticationRepository authenticationRepository=AuthenticationRepository
       httpClient: http.Client(),
     ),
   );
-
+  // final UserRecipeRepository userRecipeRepository = UserRecipeRepository(
+  //   dataProvider: UserRecipeDataProvider(
+  //     httpClient: http.Client(),
+  //   ),
+  // );
   final CommentRepository commentRepository = CommentRepository(
     dataProvider: CommentDataProvider(
       httpClient: http.Client(),
@@ -70,8 +77,9 @@ final AuthenticationRepository authenticationRepository=AuthenticationRepository
       commentRepository: commentRepository,
       ingredientRepository: ingredientRepository,
       stepRepository: stepRepository,
-      userRepository:userRepository,
+      //userRepository:userRepository,
       authenticationRepository: authenticationRepository,
+      //userRecipeRepository: userRecipeRepository,
     ),
     // BlocProvider(
 
@@ -89,13 +97,16 @@ class MyApp extends StatelessWidget {
 final StepRepository stepRepository;
   final UserRepository userRepository;
    final AuthenticationRepository authenticationRepository;
+  // final UserRecipeRepository userRecipeRepository;
   MyApp(
       {@required this.recipeRepository,
       @required this.commentRepository,
       @required this.ingredientRepository,
       @required this.stepRepository,
       @required this.userRepository,
-      @required this.authenticationRepository})
+      @required this.authenticationRepository,
+      //@required this.userRecipeRepository
+      })
       : assert(recipeRepository != null ||
             commentRepository != null ||
             ingredientRepository != null ||stepRepository!=null ||userRepository!=null|| authenticationRepository!=null );
@@ -112,6 +123,7 @@ final StepRepository stepRepository;
         RepositoryProvider(create: (context) => this.stepRepository),
         RepositoryProvider(create: (context) => this.userRepository),
         RepositoryProvider(create: (context) => this.authenticationRepository),
+       //  RepositoryProvider(create: (context) => this.userRecipeRepository),
         
       ],
       //value: this.recipeRepository,
@@ -142,7 +154,10 @@ final StepRepository stepRepository;
                   CommentBloc(commentRepository: this.commentRepository)),
 
                   
-
+            //  BlocProvider(
+            //   create: (context) =>
+                  
+            //       UserRecipeBloc(userRecipeRepository: this.userRecipeRepository)),
                   
         ],
         // create: (context) => RecipeBloc(recipeRepository: this.recipeRepository)..add(RecipeRetrieve()),

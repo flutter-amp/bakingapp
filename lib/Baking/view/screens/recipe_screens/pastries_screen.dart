@@ -1,5 +1,6 @@
 
 import 'package:baking_app/Baking/bloc/recipe_bloc/recipe_bloc.dart';
+import 'package:baking_app/Baking/bloc/recipe_bloc/recipe_event.dart';
 import 'package:baking_app/Baking/bloc/recipe_bloc/recipe_state.dart';
 import 'package:baking_app/Baking/view/screens/recipe_screens/add_recipe_screen.dart';
 import 'package:baking_app/Baking/view/widgets/recipe_widgets/pastery_item.dart';
@@ -12,6 +13,7 @@ import 'add_recipe_screen.dart';
 class PastriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+ 
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -21,7 +23,10 @@ class PastriesScreen extends StatelessWidget {
         backgroundColor: Color.fromRGBO(0, 0, 0, 0),
         elevation: 0,
       ),
-      body: BlocBuilder<RecipeBloc, RecipeState>(builder: (_, state) {
+      body: BlocBuilder<RecipeBloc, RecipeState>(
+        
+        builder: (_, state) {
+        
         if(state is RecipeFailure){
           return Text("not working");
         }

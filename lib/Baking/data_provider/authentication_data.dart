@@ -6,14 +6,14 @@ import 'package:http/http.dart' as http;
 import 'package:jwt_decode/jwt_decode.dart';
 
 class AuthenticationDataProvider{
-  final _baseUrl = 'http://192.168.1.6:8181';
+  final _baseUrl = 'http://192.168.137.1:8181';
   final http.Client httpClient;
 
   AuthenticationDataProvider({@required this.httpClient}) : assert(httpClient != null);
 
   Future<String> signInWithEmailAndPassword(User user) async{
        final response = await httpClient.post(
-      Uri.http('192.168.1.6:8181', '/login'),
+      Uri.http('192.168.137.1:8181', '/login'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

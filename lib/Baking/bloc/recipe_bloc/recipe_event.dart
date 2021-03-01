@@ -21,12 +21,21 @@ class RecipeRetrieve extends RecipeEvent{
   @override
 List<Object> get props => [];
 }
+
 class RecipeImageRetrieve extends RecipeEvent{
 
   const RecipeImageRetrieve();
 
   @override
 List<Object> get props => [];
+}
+class UserRecipeRetrieve extends RecipeEvent{
+  final int id;
+
+  const UserRecipeRetrieve(this.id);
+
+  @override
+ List<Object> get props => [];
 }
 class RecipeUpdate extends RecipeEvent{
   final Recipe recipe;
@@ -35,10 +44,12 @@ class RecipeUpdate extends RecipeEvent{
   @override
  List<Object> get props => [recipe];
 }
-class RecipeDelete extends RecipeEvent{
-  final Recipe recipe;
-  const RecipeDelete(this.recipe);
+
+class UserRecipeDelete extends RecipeEvent{
+  final int id;
+   final int userID;
+  const UserRecipeDelete(this.id,this.userID);
 
   @override
-  List<Object> get props => [recipe];
+ List<Object> get props => [];
 }

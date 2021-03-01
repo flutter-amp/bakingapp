@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class IngredientDataProvider{
-  final _baseUrl = 'http://192.168.1.6:8181';
+  final _baseUrl = 'http://192.168.137.1:8181';
   final http.Client httpClient;
 
   IngredientDataProvider({@required this.httpClient}) : assert(httpClient != null);

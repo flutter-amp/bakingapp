@@ -1,5 +1,7 @@
 import 'package:baking_app/Baking/bloc/recipe_bloc/recipe_bloc.dart';
 import 'package:baking_app/Baking/bloc/recipe_bloc/recipe_event.dart';
+import 'package:baking_app/Baking/bloc/user_recipes/user_recipes_bloc.dart';
+import 'package:baking_app/Baking/bloc/user_recipes/user_recipes_event.dart';
 import 'package:baking_app/Baking/models/recipe.dart';
 import 'package:baking_app/Baking/view/screens/baking_route.dart';
 import 'package:baking_app/Baking/view/screens/recipe_screens/add_recipe_screen.dart';
@@ -82,8 +84,9 @@ class UserPasteryItem extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                      BlocProvider.of<RecipeBloc>(context).add(RecipeDelete(recipe));
-                    
+                     
+                      BlocProvider.of<RecipeBloc>(context).add(UserRecipeDelete(recipe.id,recipe.userID));
+                      
                       },
                       child: Row(
                         children: <Widget>[

@@ -1,16 +1,14 @@
 
-import 'package:baking_app/Baking/bloc/authentication_boc/authentication_bloc.dart';
-import 'package:baking_app/Baking/bloc/authentication_boc/authentication_state.dart';
-import 'package:baking_app/Baking/models/ingredient.dart';
+
 import 'package:baking_app/Baking/models/recipe.dart';
 import 'package:baking_app/Baking/view/screens/recipe_screens/add_recipe_screen.dart';
 import 'package:baking_app/Baking/view/screens/recipe_screens/pastry_detail_screen.dart';
 import 'package:baking_app/Baking/view/screens/user-screens/sign_in_screen.dart';
 import 'package:baking_app/Baking/view/screens/user-screens/sign_up_screen.dart';
 import 'package:baking_app/Baking/view/screens/user-screens/user_profile_screen.dart';
-import 'package:baking_app/tabsNavigation.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 
 class BakingAppRoute {
 

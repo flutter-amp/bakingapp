@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 
 
 class RecipeDataProvider{
-  final _baseUrl = 'http://192.168.1.6:8181';
+  final _baseUrl = 'http://192.168.137.1:8181';
   final http.Client httpClient;
 
   RecipeDataProvider({@required this.httpClient}) : assert(httpClient != null);
@@ -30,6 +30,7 @@ class RecipeDataProvider{
     }
 
   }
+
  Future<void> getRecipe(int id)async{
     final response = await httpClient.get('$_baseUrl/recipe/image/$id');
     print('satus coooooooooooooooooooooooooooooooooooooooooooooooooooo');
@@ -45,7 +46,27 @@ class RecipeDataProvider{
     }
 
   }
-    Future<void> deleteRecipe(int id) async {
+
+
+
+    Future<List<Recipe>> getUserRecipes(int id)async{
+    final response = await httpClient.get('$_baseUrl/user/$id/recipes');
+    print('satus coooooooooooooooooooooooooooooooooooooooooooooooooooo');
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+       
+      final recipes = jsonDecode(response.body) as List;
+      return recipes.map((recipe) {
+        
+       return Recipe.fromJson(recipe);
+      }).toList();
+     
+    } else {
+      throw Exception('Failed');
+    }
+
+  }
+      Future<void> deleteRecipe(int id) async {
     final http.Response response = await httpClient.delete(
       '$_baseUrl/recipes/delete/$id',
       headers: <String, String>{
@@ -57,21 +78,24 @@ class RecipeDataProvider{
       throw Exception('Failed to delete recipe.');
     }
   }
+ 
+
 
   
   Future<Recipe> createRecipe(Recipe recipe) async {  
     print("my file"+recipe.image.toString());
     final response = await httpClient.post(
 
-      Uri.http('192.168.1.6:8181', '/recipes/new'),
+      Uri.http('192.168.137.1:8181', '/recipes/new'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      
+       
       body: jsonEncode(<String, dynamic>{
         'title': recipe.title,
         'servings': recipe.servings,
         'duration': recipe.duration,
+        'recipeuserid':recipe.userID,
          'ingredients':recipe.ingredients.map((ingredient) {
              return <String,dynamic>{
                 "title":ingredient.name,
@@ -81,7 +105,7 @@ class RecipeDataProvider{
          }).toList(),
          'steps':recipe.steps.map((step) {
              return <String,dynamic>{
-                "direction":step,
+                "direction":step.direction,
                
             };
          }).toList(),
@@ -96,7 +120,7 @@ class RecipeDataProvider{
 
     if (response.statusCode == 201) {
               final recipet=Recipe.fromJson(jsonDecode(response.body));
-    await UploadImageRecipe(recipet.id,recipe.image);
+    //await UploadImageRecipe(recipet.id,recipe.image);
       return recipet;
     } else {
       throw Exception('Failed to create recipe.');
@@ -118,7 +142,7 @@ class RecipeDataProvider{
     });
     dio.options.headers["id"] = recipeId;
     
-    var response = await dio.post("http://192.168.1.6:8181/recipes/newImage/${recipeId}", data: formData,queryParameters:{"id":recipeId});
+    var response = await dio.post("http://192.168.137.1:8181/recipes/newImage/${recipeId}", data: formData,queryParameters:{"id":recipeId});
     print("rsponnnnnnnnnnnnnnnnnn");
     
 

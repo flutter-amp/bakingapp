@@ -26,25 +26,57 @@ List<Recipe> time = [];
         yield RecipeSuccessfull(recipe);
            print("kjjjjjjjjjjjjjjjjjjjj");
       } catch (e) {
-        print("hhhhhhhhhhhhhhhhhhh");
+        print(e);
             
         yield RecipeFailure();
       }
     }
     if( event is RecipeRetrieve){
-      print('heeeeeeeeeeeeeeeeeeeeeeeeeee');
+
       yield RecipeInProgress();
        try {
        final recipes = await recipeRepository.getRecipes();
-        print("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+
         yield RecipeSuccessfull(recipes);
-         print("vvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+
       } catch ( error) {
         
         print("my errorrrrrrrrrrrrrrrrrrrrrrrrrrr" );
         yield RecipeFailure();
       }
     }
+      if( event is UserRecipeRetrieve){
+
+      yield RecipeInProgress();
+       try {
+       final userRecipes = await recipeRepository.getUserRecipes(event.id);
+       final recipes=await recipeRepository.getRecipes();
+
+        yield RecipeSuccessfull(recipes,userRecipes);
+
+      } catch ( error) {
+        
+        print("my errorrrrrrrrrrrrrrrrrrrrrrrrrrr" );
+        yield RecipeFailure();
+      }
+    }
+      if( event is UserRecipeDelete){
+      yield RecipeInProgress();
+       try {
+         await recipeRepository.deleteRecipe(event.id);
+       final userRecipes = await recipeRepository.getUserRecipes(event.userID);
+         final recipes=await recipeRepository.getRecipes();
+
+        yield RecipeSuccessfull(recipes,userRecipes);
+       
+       
+      } catch ( error) {
+        
+        print(error);
+        yield RecipeFailure();
+      }
+    }
+     
     if(event is RecipeImageRetrieve){
             yield RecipeInProgress();
        try {
@@ -67,7 +99,7 @@ List<Recipe> time = [];
        try {
        await recipeRepository..updateRecipe(event.recipe);
         final recipes = await recipeRepository.getRecipes();
-        print("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+      
         yield RecipeSuccessfull(recipes);
          print("vvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
       } catch ( error) {
@@ -76,17 +108,6 @@ List<Recipe> time = [];
         yield RecipeFailure();
       }
     }
-    if( event is RecipeDelete){
-      yield RecipeInProgress();
-       try {
-         await recipeRepository.deleteRecipe(event.recipe.id);
-       final recipes = await recipeRepository.getRecipes();
-        yield RecipeSuccessfull(recipes);
-      } catch ( error) {
-        
-        print(error);
-        yield RecipeFailure();
-      }
-    }
+
   }
 }

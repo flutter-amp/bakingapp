@@ -9,9 +9,9 @@ class UserRepository{
       : assert(dataProvider != null);
 
 
-    Future<User> createUser(User user) async {
+    Future<void> createUser(User user) async {
 
-    return await dataProvider.createUser(user);
+  await dataProvider.createUser(user);
   }
 
   
