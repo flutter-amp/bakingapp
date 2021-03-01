@@ -3,25 +3,25 @@ import 'package:baking_app/Baking/bloc/authentication_boc/authentication_state.d
 import 'package:baking_app/Baking/bloc/comment_bloc/comment_bloc.dart';
 import 'package:baking_app/Baking/bloc/recipe_bloc/recipe_bloc.dart';
 import 'package:baking_app/Baking/bloc/recipe_state/step_bloc.dart';
-import 'package:baking_app/Baking/bloc/user_recipes/user_recipes_bloc.dart';
+
 import 'package:baking_app/Baking/data_provider/authentication_data.dart';
 import 'package:baking_app/Baking/data_provider/comment_data.dart';
 import 'package:baking_app/Baking/data_provider/recipe_data.dart';
 import 'package:baking_app/Baking/data_provider/step_date_provider.dart';
 import 'package:baking_app/Baking/data_provider/user_data.dart';
-import 'package:baking_app/Baking/data_provider/user_recipe_data.dart';
+
 import 'package:baking_app/Baking/repository/comment/comment_repository.dart';
 import 'package:baking_app/Baking/repository/ingredient/ingredient_repository.dart';
 import 'package:baking_app/Baking/repository/recipe/recipe_repository.dart';
 import 'package:baking_app/Baking/repository/recipe_state/step_repository.dart';
 import 'package:baking_app/Baking/repository/user/user_repository.dart';
-import 'package:baking_app/Baking/repository/user_recipe_repository.dart/user_recipe_repository.dart';
+
 import 'package:baking_app/Baking/view/screens/baking_route.dart';
 import 'package:baking_app/Baking/view/screens/user-screens/sign_in_screen.dart';
 import 'package:baking_app/tabsNavigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 
 import 'Baking/bloc/ingredient_bloc/ingredient_bloc.dart';
 import 'Baking/bloc/recipe_bloc/recipe_event.dart';

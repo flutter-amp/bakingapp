@@ -49,6 +49,7 @@ class AuthenticationDataProvider{
  Future<User> getUser(int id) async{
     final response = await httpClient.get('$_baseUrl/users/$id');
     if (response.statusCode == 200) {
+    
       return User.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Failed to retrieve user.');

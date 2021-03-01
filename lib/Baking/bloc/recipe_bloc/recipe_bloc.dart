@@ -81,12 +81,12 @@ List<Recipe> time = [];
             yield RecipeInProgress();
        try {
       // final image = await recipeRepository.getRecipe();
-        print("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+      
         final recipes = await recipeRepository.getRecipes();
-        print("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+       
         yield RecipeSuccessfull(recipes);
     
-         print("vvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+        
       } catch ( error) {
         
         print("my errorrrrrrrrrrrrrrrrrrrrrrrrrrr" );
@@ -94,17 +94,18 @@ List<Recipe> time = [];
       }
     }
        if( event is RecipeUpdate){
-      print('heeeeeeeeeeeeeeeeeeeeeeeeeee');
+    
       yield RecipeInProgress();
        try {
-       await recipeRepository..updateRecipe(event.recipe);
-        final recipes = await recipeRepository.getRecipes();
-      
-        yield RecipeSuccessfull(recipes);
-         print("vvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+       await recipeRepository.updateRecipe(event.recipe);
+         final userRecipes = await recipeRepository.getUserRecipes(event.userID);
+         final recipes=await recipeRepository.getRecipes();
+
+        yield RecipeSuccessfull(recipes,userRecipes);
+        
       } catch ( error) {
         
-        print("my errorrrrrrrrrrrrrrrrrrrrrrrrrrr" );
+     
         yield RecipeFailure();
       }
     }

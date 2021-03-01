@@ -39,7 +39,8 @@ class UserRecipeRetrieve extends RecipeEvent{
 }
 class RecipeUpdate extends RecipeEvent{
   final Recipe recipe;
-  const RecipeUpdate(this.recipe);
+    final int userID;
+  const RecipeUpdate(this.recipe,this.userID);
 
   @override
  List<Object> get props => [recipe];
