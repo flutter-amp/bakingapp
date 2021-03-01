@@ -70,7 +70,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
       BlocProvider.of<RecipeBloc>(context).add(RecipeCreate(_recipe, _file));
      // _recipe = Recipe(title: '',duration: '',servings: 0,imageurl: '');
     } else {
-      BlocProvider.of<RecipeBloc>(context).add(RecipeUpdate(_recipe));
+      BlocProvider.of<RecipeBloc>(context).add(RecipeUpdate(_recipe,_recipe.userID));
     }
   }
 
