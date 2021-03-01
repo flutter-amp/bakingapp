@@ -21,6 +21,7 @@ import 'package:baking_app/Baking/view/screens/user-screens/sign_in_screen.dart'
 import 'package:baking_app/tabsNavigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Baking/bloc/ingredient_bloc/ingredient_bloc.dart';
 import 'Baking/bloc/recipe_bloc/recipe_event.dart';
@@ -31,9 +32,26 @@ import 'Baking/data_provider/ingredient.data_provider.dart';
 import 'Baking/repository/authentication/authentication_repository.dart';
 
 
+// void sharedPrefInit() async {
+//     try {
+//         /// Checks if shared preference exist
+//         Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+//         final SharedPreferences prefs = await _prefs;
+//         prefs.getString("token");
+//     } catch (err) {
+//         /// setMockInitialValues initiates shared preference
+//         /// Adds app-name 
+//         SharedPreferences.setMockInitialValues({});
+//         Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+//         final SharedPreferences prefs = await _prefs;
+//         prefs.setString("token", "");
+//     }
+// }
 
 
 void main() {
+  //sharedPrefInit();
+
 final AuthenticationRepository authenticationRepository=AuthenticationRepository(
    dataProvider: AuthenticationDataProvider(
       httpClient: http.Client(),
@@ -77,7 +95,7 @@ final AuthenticationRepository authenticationRepository=AuthenticationRepository
       commentRepository: commentRepository,
       ingredientRepository: ingredientRepository,
       stepRepository: stepRepository,
-      //userRepository:userRepository,
+      userRepository:userRepository,
       authenticationRepository: authenticationRepository,
       //userRecipeRepository: userRecipeRepository,
     ),
@@ -91,6 +109,9 @@ final AuthenticationRepository authenticationRepository=AuthenticationRepository
 }
 
 class MyApp extends StatelessWidget {
+
+
+
   final RecipeRepository recipeRepository;
   final CommentRepository commentRepository;
   final IngredientRepository ingredientRepository;

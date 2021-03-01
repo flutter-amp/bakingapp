@@ -6,16 +6,28 @@ import 'package:meta/meta.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'package:path/path.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../shared_preferences.dart';
 
 class RecipeDataProvider{
   final _baseUrl = 'http://192.168.137.1:8181';
   final http.Client httpClient;
-
   RecipeDataProvider({@required this.httpClient}) : assert(httpClient != null);
 
+
   Future<List<Recipe>> getRecipes()async{
-    final response = await httpClient.get('$_baseUrl/recipes');
-    print('satus coooooooooooooooooooooooooooooooooooooooooooooooooooo');
+
+    final response = await httpClient.get('$_baseUrl/recipes',
+     headers: await SharedPrefUtils.getStringValuesSF().then((token){
+         print(token);
+    return (<String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer $token',
+      });
+    }) 
+    );
     print(response.statusCode);
     if (response.statusCode == 200) {
        await getRecipe(1 );

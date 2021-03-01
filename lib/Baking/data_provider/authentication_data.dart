@@ -4,12 +4,17 @@ import 'package:baking_app/Baking/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:jwt_decode/jwt_decode.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../shared_preferences.dart';
 
 class AuthenticationDataProvider{
   final _baseUrl = 'http://192.168.137.1:8181';
   final http.Client httpClient;
 
   AuthenticationDataProvider({@required this.httpClient}) : assert(httpClient != null);
+
+
 
   Future<String> signInWithEmailAndPassword(User user) async{
        final response = await httpClient.post(
@@ -27,6 +32,7 @@ class AuthenticationDataProvider{
         final jwt = jsonDecode(response.body);
          print(jwt);
         final token = jwt['token'];
+        SharedPrefUtils.addStringToSF(token);
         print(token);
         Map<String, dynamic> payload = Jwt.parseJwt(token);
 
