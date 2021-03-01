@@ -15,7 +15,7 @@ class BakingAppRoute {
   static Route generateRoute(RouteSettings settings) {
 
     if (settings.name == '/signup') {
-      return MaterialPageRoute(builder: (context) => SignUpScreen());
+      return MaterialPageRoute(builder: (context) => SignupWrapped());
     }
     if(settings.name == SignInScreen.routeName){
       return MaterialPageRoute(builder: (context) {
@@ -28,13 +28,13 @@ class BakingAppRoute {
           builder: (context) => AddRecipeScreen(settings.arguments));
     }
 
-    if (settings.name == UserProfileScreen.routeName) {
-     // Course course = settings.arguments;
-      return MaterialPageRoute(
-          builder: (context) => UserProfileScreen(
-       //         course: course,
-              ));
-    }
+    // if (settings.name == UserProfileScreen.routeName) {
+    //  // Course course = settings.arguments;
+    //   return MaterialPageRoute(
+    //       builder: (context) => UserProfileScreen(
+    //    //         course: course,
+    //           ));
+    // }
         if (settings.name == PastryDetailScreen.routeName) {
       Recipe recipe = settings.arguments;
       return MaterialPageRoute(

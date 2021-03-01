@@ -153,9 +153,6 @@ final StepRepository stepRepository;
             BlocProvider(
               create: (context) => AuthenticationBloc(authenticationRepository: this.authenticationRepository)),
 
-            BlocProvider(
-              create: (context) => UserBloc(userRepository: this.userRepository)),
-
           BlocProvider(
               create: (context) =>
                   RecipeBloc(recipeRepository: this.recipeRepository)
@@ -211,7 +208,6 @@ final StepRepository stepRepository;
           ),
           home:BlocBuilder<AuthenticationBloc,AuthenticationState>(builder: (_,state){
               if(state is AuthenticationAuthenticated){
-                print('authentic');
                   return TabsNavigation();
               }
               else{

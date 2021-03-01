@@ -4,14 +4,34 @@ import 'package:baking_app/Baking/bloc/authentication_boc/authentication_state.d
 import 'package:baking_app/Baking/bloc/user_bloc/user_bloc.dart';
 import 'package:baking_app/Baking/bloc/user_bloc/user_event.dart';
 import 'package:baking_app/Baking/models/user.dart';
+import 'package:baking_app/Baking/repository/authentication/authentication_repository.dart';
+import 'package:baking_app/Baking/repository/user/user_repository.dart';
 import 'package:baking_app/Baking/view/widgets/user-widgets/user_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
+class UserProfileWrapped extends StatelessWidget {
+  static const routeName = 'userEdit';
+
+  @override
+  Widget build(BuildContext context) {
+    final authService = RepositoryProvider.of<AuthenticationRepository>(context);
+    final userRepository = RepositoryProvider.of<UserRepository>(context);
+    final authBloc = BlocProvider.of<AuthenticationBloc>(context);
+    return Container(
+      alignment: Alignment.center,
+      child: BlocProvider<UserBloc>(
+        create: (context) => UserBloc(userRepository: userRepository,authenticationBloc:authBloc ,authenticationRepository:authService ),
+        child: UserProfileScreen(),
+      ),
+    );
+  }
+}
+
 
 class UserProfileScreen extends StatefulWidget {
-  static const routeName = 'userEdit';
+
 
   @override
   _UserProfileScreenState createState() => _UserProfileScreenState();
@@ -20,9 +40,9 @@ class UserProfileScreen extends StatefulWidget {
 class _UserProfileScreenState extends State<UserProfileScreen> {
    final formkey = GlobalKey<FormState>();
   final TextEditingController _pass = TextEditingController();
-  final TextEditingController _confirmPass = TextEditingController();
 
-  var user=User(username:'',password:'',email:'');
+  final TextEditingController _confirmPass = TextEditingController();
+  var user=User(id:0, username:'',password:'',email:'');
 
  void onSave(BuildContext context ){
     print("againnnnnnnnnnnnnnnnn");
@@ -30,7 +50,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
     print(user.password);
     print(user.username);
     formkey.currentState.save();
-    BlocProvider.of<UserBloc>(context).add(UserCreate(user));
+    BlocProvider.of<UserBloc>(context).add(UserUpdate(User(id:user.id,username: user.username,password:user.password ,email:user.email)));
 
      
      
@@ -41,17 +61,30 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthenticationBloc,AuthenticationState>(builder: (context,state){
         if(state is AuthenticationAuthenticated){
-          user.username=state.user.username;
-           user.email=state.user.email;
-            user.password=state.user.password;
+          user.id=state.user.id;
             return Scaffold(
       backgroundColor: Colors.white,
       body: Form(
         key: formkey,
-        child: ListView(
+        child: Column(
           children: <Widget>[
             // BackButtonWidget(),
-            FlatButton(
+            SizedBox(
+              height: 120,
+            ),
+
+             FlatButton(
+                height: 50,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25),
+                    side: BorderSide(color: Colors.red)),
+                onPressed: () {
+                  BlocProvider.of<UserBloc>(context).add(UserDelete(state.user));
+                },
+                //color: Theme.of(context).accentColor,
+                textColor: Theme.of(context).accentColor,
+                child: Text('Delete acc')),
+                        FlatButton(
                 height: 50,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25),
@@ -62,11 +95,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 //color: Theme.of(context).accentColor,
                 textColor: Theme.of(context).accentColor,
                 child: Text('Log Out')),
-                Text('Hey! UserName',
+
+            Text('Hey! ${user.username}',
                   style: Theme.of(context).textTheme.headline4),
-            SizedBox(
-              height: 20,
-            ),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Row(
@@ -76,9 +107,10 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       child: Container(
                           margin: EdgeInsets.only(right: 20, left: 10),
                           child: TextFormField(
-                            
+                            initialValue: state.user.username,
                             decoration: InputDecoration(
                               hintText: 'Username',
+                        
            
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
@@ -107,6 +139,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       child: Container(
                           margin: EdgeInsets.only(right: 20, left: 10),
                           child: TextFormField(
+                                initialValue: state.user.email,
                              onSaved: (value) {
                     user.email = value;
                   },
@@ -199,7 +232,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                     },
                     color: Color.fromRGBO(247, 102, 94, 1),
                     child: Text(
-                      'SIGN UP',
+                      'Submit Changes',
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -209,12 +242,6 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 ),
               ),
             ),
-            FlatButton(
-              child:Text('Log in'),
-              onPressed: (){
-                Navigator.pop(context);
-              },
-            )
           ],
         ),
       ),

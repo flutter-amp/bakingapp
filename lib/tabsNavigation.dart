@@ -23,7 +23,7 @@ class _TabsNavigationState extends State<TabsNavigation> {
   static List<Widget> _widgetOptions = <Widget>[
     UserPastriesScreen(),
     PastriesScreen(),
-    UserProfileScreen(),
+    UserProfileWrapped(),
   ];
 
   void _onItemTapped(int index) {

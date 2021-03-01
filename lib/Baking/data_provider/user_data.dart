@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:baking_app/Baking/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -39,7 +38,7 @@ final _baseUrl = 'http://192.168.137.1:8181';
 
     Future<void> deleteUser(int id) async {
     final response = await httpClient.delete(
-      '$_baseUrl/comments/delete/$id',
+      '$_baseUrl/users/delete/$id',
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -55,7 +54,7 @@ final _baseUrl = 'http://192.168.137.1:8181';
 
 Future<void> updateUser(User user) async {
     final response = await httpClient.put(
-      '$_baseUrl/comments/update/${user.id}',
+      '$_baseUrl/users/update/${user.id}',
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
